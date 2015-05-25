@@ -118,6 +118,69 @@
             </objects>
             <point key="canvasLocation" x="1821" y="-210"/>
         </scene>
+        <!--Memes Table View Controller Detail-->
+        <scene sceneID="oAw-rI-haj">
+            <objects>
+                <viewController storyboardIdentifier="MemesTableViewControllerDetail" id="joS-Wb-vgJ" customClass="MemesTableViewControllerDetail" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="m6v-61-BkV"/>
+                        <viewControllerLayoutGuide type="bottom" id="zoJ-DM-yg1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c2w-CJ-NfB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8hs-mH-6fI">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8hs-mH-6fI" firstAttribute="leading" secondItem="c2w-CJ-NfB" secondAttribute="leadingMargin" constant="-16" id="9dR-LB-yG5"/>
+                            <constraint firstItem="8hs-mH-6fI" firstAttribute="top" secondItem="m6v-61-BkV" secondAttribute="bottom" id="NLV-60-X2U">
+                                <variation key="widthClass=compact" constant="-20"/>
+                            </constraint>
+                            <constraint firstAttribute="centerY" secondItem="8hs-mH-6fI" secondAttribute="centerY" id="SwD-XB-bBs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8hs-mH-6fI" secondAttribute="trailing" constant="-16" id="f6a-i5-3ly"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="8hs-mH-6fI" secondAttribute="bottom" constant="-5" id="qhs-Bp-EOC">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstAttribute="centerX" secondItem="8hs-mH-6fI" secondAttribute="centerX" id="zFb-o9-2U6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="8hs-mH-6fI"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="9dR-LB-yG5"/>
+                                <exclude reference="NLV-60-X2U"/>
+                                <exclude reference="SwD-XB-bBs"/>
+                                <exclude reference="f6a-i5-3ly"/>
+                                <exclude reference="qhs-Bp-EOC"/>
+                                <exclude reference="zFb-o9-2U6"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="8hs-mH-6fI"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="9dR-LB-yG5"/>
+                                <include reference="NLV-60-X2U"/>
+                                <include reference="SwD-XB-bBs"/>
+                                <include reference="f6a-i5-3ly"/>
+                                <include reference="qhs-Bp-EOC"/>
+                                <include reference="zFb-o9-2U6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="8hs-mH-6fI" id="zRL-gZ-PSG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fKo-Kq-dId" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2512.5" y="-210"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="NwH-4x-Tlw">
             <objects>
