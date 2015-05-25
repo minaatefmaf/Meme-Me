@@ -150,6 +150,7 @@
                         <outlet property="cameraButton" destination="Cfz-oX-KdG" id="oNj-nD-4rf"/>
                         <outlet property="imagePickerView" destination="aEf-Wm-pJc" id="p7T-BV-Szn"/>
                         <outlet property="navigationBar" destination="4hC-O2-zY8" id="l9v-hs-hzg"/>
+                        <outlet property="shareButton" destination="gC0-tV-g9X" id="eem-5u-zAB"/>
                         <outlet property="toolBar" destination="qnW-RN-mDG" id="uxb-QT-PGW"/>
                         <outlet property="topTextField" destination="Pek-OT-3yS" id="ES1-HV-4BE"/>
                     </connections>

@@ -14,6 +14,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -35,7 +36,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Assign each textfield to its proper delegate
         topTextField.delegate = memeTopTextFieldDelegate
         bottomTextField.delegate = memeBottomTextFieldDelegate
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,6 +53,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             cameraButton.enabled = false
         }
+        
+        // Disable the share button initially.
+        shareButton.enabled = false
         
         // Subscribe to keyboard notifications to allow the view to raise when necessary
         self.subscribeToKeyboardNotifications()
