@@ -9,7 +9,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="JdR-cv-I5V">
             <objects>
-                <tabBarController id="dk0-Vv-CsU" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UITabBarController" id="dk0-Vv-CsU" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="nYY-vg-Aw1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -194,7 +194,11 @@
                                                 <action selector="shareMemedImage:" destination="vXZ-lx-hvc" id="gqR-oe-eU9"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gnW-gF-EVV"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gnW-gF-EVV">
+                                            <connections>
+                                                <action selector="cancelMemeEditor:" destination="vXZ-lx-hvc" id="Eev-3u-kO5"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

@@ -93,6 +93,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
+    @IBAction func cancelMemeEditor(sender: UIBarButtonItem) {
+        navigateToTheTabBarController()
+    }
+    
+    func navigateToTheTabBarController() {
+        var controller: UITabBarController
+        controller = self.storyboard?.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
     
     @IBAction func pickAnImageFromCamera(sender: UIBarButtonItem) {
         pickAnImage(UIImagePickerControllerSourceType.Camera)
