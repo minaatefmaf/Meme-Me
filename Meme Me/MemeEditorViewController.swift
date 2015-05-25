@@ -15,6 +15,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    // Add references to the delegates
+    let memeTopTextFieldDelegate = MemeTopTextFieldDelegate()
+    let memeBottomTextFieldDelegate = MemeBottomTextFieldDelegate()
+    
     // Set the default text attributes dictionary.
     let memeTextAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
@@ -37,6 +41,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Align the text in the textfields to center.
         topTextField.textAlignment = NSTextAlignment.Center
         bottomTextField.textAlignment = NSTextAlignment.Center
+        
+        // Assign each textfield to its proper delegate
+        topTextField.delegate = memeTopTextFieldDelegate
+        bottomTextField.delegate = memeBottomTextFieldDelegate
         
     }
     
