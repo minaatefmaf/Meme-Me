@@ -15,8 +15,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    // Set the default text attributes dictionary.
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : 3.0
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Assign our defult text attributes to the textfields
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
         
         // Set the textfields' initial text
         topTextField.text = "TOP"
@@ -25,6 +37,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Align the text in the textfields to center.
         topTextField.textAlignment = NSTextAlignment.Center
         bottomTextField.textAlignment = NSTextAlignment.Center
+        
     }
     
     override func viewWillAppear(animated: Bool) {
