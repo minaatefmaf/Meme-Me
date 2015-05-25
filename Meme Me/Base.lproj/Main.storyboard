@@ -65,12 +65,18 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1Lb-Og-f4J" id="jfA-de-ZKK"/>
+                                    <outlet property="delegate" destination="1Lb-Og-f4J" id="JeM-Fb-L0A"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="0Gp-Mh-uk5" secondAttribute="bottom" constant="-10" id="78e-K3-7kf"/>
-                            <constraint firstItem="0Gp-Mh-uk5" firstAttribute="top" secondItem="YIy-vg-YIt" secondAttribute="topMargin" constant="20" id="UbN-ax-AaJ"/>
+                            <constraint firstItem="0Gp-Mh-uk5" firstAttribute="top" secondItem="YIy-vg-YIt" secondAttribute="topMargin" constant="20" id="UbN-ax-AaJ">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="0Gp-Mh-uk5" secondAttribute="trailing" constant="-16" id="hI2-2t-KI7"/>
                             <constraint firstItem="0Gp-Mh-uk5" firstAttribute="leading" secondItem="YIy-vg-YIt" secondAttribute="leadingMargin" constant="-16" id="pXU-nA-qlK"/>
                         </constraints>
