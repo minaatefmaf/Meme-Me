@@ -15,6 +15,7 @@
 		2ECC53761B0CC318007FCAF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2ECC53751B0CC318007FCAF7 /* Images.xcassets */; };
 		2ECC53791B0CC318007FCAF7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2ECC53771B0CC318007FCAF7 /* LaunchScreen.xib */; };
 		2ECC53851B0CC318007FCAF7 /* Meme_MeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC53841B0CC318007FCAF7 /* Meme_MeTests.swift */; };
+		2ECD19FA1B13623600938908 /* DefaultTextAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		2ECC537E1B0CC318007FCAF7 /* Meme MeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Meme MeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECC53831B0CC318007FCAF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECC53841B0CC318007FCAF7 /* Meme_MeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme_MeTests.swift; sourceTree = "<group>"; };
+		2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextAttributes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				2ECC536C1B0CC318007FCAF7 /* Supporting Files */,
 				2E5817C91B13393200EF785E /* MemeTopTextFieldDelegate.swift */,
 				2E5817CB1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift */,
+				2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */,
 			);
 			path = "Meme Me";
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECC53711B0CC318007FCAF7 /* MemeEditorViewController.swift in Sources */,
+				2ECD19FA1B13623600938908 /* DefaultTextAttributes.swift in Sources */,
 				2E5817CA1B13393200EF785E /* MemeTopTextFieldDelegate.swift in Sources */,
 				2ECC536F1B0CC318007FCAF7 /* AppDelegate.swift in Sources */,
 				2E5817CC1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift in Sources */,

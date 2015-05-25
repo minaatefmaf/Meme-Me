@@ -12,14 +12,9 @@ class MemeTopTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     // Should clear the initial value "TOP" when a user clicks the textfield for the first time.
     var firstEdit = true
-    
+
     // Set the default text attributes dictionary.
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName: UIColor.blackColor(),
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName: 3.0
-    ]
+    let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         

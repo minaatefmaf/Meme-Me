@@ -20,12 +20,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let memeBottomTextFieldDelegate = MemeBottomTextFieldDelegate()
     
     // Set the default text attributes dictionary.
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName: UIColor.blackColor(),
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName: 3.0
-    ]
+    let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
     override func viewDidLoad() {
         super.viewDidLoad()
