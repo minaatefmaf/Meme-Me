@@ -74,6 +74,26 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return true
     }
     
+    @IBAction func shareMemedImage(sender: UIBarButtonItem) {
+        // Generate a memed image
+        let memedImage = generateMemedImage()
+        // Define an instance of the ActivityViewController
+        let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        // Present the ActivityViewController
+        self.presentViewController(activityController, animated: true, completion: nil)
+        
+        // Save the meme & dismiss the ActivityViewController once it has done its work.
+        activityController.completionWithItemsHandler  = {
+            activityType, completed, returnedItems, activityError in
+            if completed {
+                self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        
+    }
+    
+    
     @IBAction func pickAnImageFromCamera(sender: UIBarButtonItem) {
         pickAnImage(UIImagePickerControllerSourceType.Camera)
     }
