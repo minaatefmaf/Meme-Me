@@ -11,14 +11,22 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        // Disable the camera button if the device doesn't have a camera (e.g. the simulator)
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+            cameraButton.enabled = false
+        }
+    }
 
     @IBAction func pickAnImageFromCamera(sender: UIBarButtonItem) {
-        
+        pickAnImage(UIImagePickerControllerSourceType.Camera)
     }
     
     @IBAction func pickAnImageFromAlbum(sender: UIBarButtonItem) {

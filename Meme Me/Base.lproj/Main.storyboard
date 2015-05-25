@@ -81,6 +81,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="Cfz-oX-KdG" id="oNj-nD-4rf"/>
                         <outlet property="imagePickerView" destination="aEf-Wm-pJc" id="p7T-BV-Szn"/>
                     </connections>
                 </viewController>
