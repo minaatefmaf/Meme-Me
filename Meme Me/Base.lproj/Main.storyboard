@@ -51,6 +51,7 @@
                         <viewControllerLayoutGuide type="bottom" id="nH2-UD-6cV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YIy-vg-YIt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0Gp-Mh-uk5">
@@ -97,7 +98,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="uVL-pm-kXZ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sS8-F9-0Wb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sS8-F9-0Wb">
+                            <connections>
+                                <action selector="AddMeme:" destination="1Lb-Og-f4J" id="5pI-xN-PKy"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEt-QW-XUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -130,6 +135,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qCQ-LB-UIl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uK7-lb-DCz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -144,7 +150,7 @@
         <!--Meme Editor View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MemeEditorViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeEditorViewController" id="vXZ-lx-hvc" customClass="MemeEditorViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -296,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="159" y="793"/>
+            <point key="canvasLocation" x="159" y="857"/>
         </scene>
     </scenes>
     <resources>

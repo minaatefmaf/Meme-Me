@@ -20,6 +20,16 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         let appDelegate = object as! AppDelegate
          memes = appDelegate.memes
     }
+    @IBAction func AddMeme(sender: UIBarButtonItem) {
+        navigateToMemeEditorView()
+    }
+    
+    func navigateToMemeEditorView() {
+        var controller: MemeEditorViewController
+        controller = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.memes.count
