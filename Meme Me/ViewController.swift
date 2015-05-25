@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     override func prefersStatusBarHidden() -> Bool {
+        // Hide the status bar
         return true
     }
     
