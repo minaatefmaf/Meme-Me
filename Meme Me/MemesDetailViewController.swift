@@ -1,5 +1,5 @@
 //
-//  MemesTableViewControllerDetail.swift
+//  MemesDetailViewController.swift
 //  Meme Me
 //
 //  Created by Mina Atef on 5/26/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemesTableViewControllerDetail: UIViewController {
+class MemesDetailViewController: UIViewController {
     
     var meme: Meme!
     

@@ -118,15 +118,16 @@
             </objects>
             <point key="canvasLocation" x="1821" y="-210"/>
         </scene>
-        <!--Memes Table View Controller Detail-->
+        <!--Memes Detail View Controller-->
         <scene sceneID="oAw-rI-haj">
             <objects>
-                <viewController storyboardIdentifier="MemesTableViewControllerDetail" id="joS-Wb-vgJ" customClass="MemesTableViewControllerDetail" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemesDetailViewController" id="joS-Wb-vgJ" customClass="MemesDetailViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="m6v-61-BkV"/>
                         <viewControllerLayoutGuide type="bottom" id="zoJ-DM-yg1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="c2w-CJ-NfB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8hs-mH-6fI">
