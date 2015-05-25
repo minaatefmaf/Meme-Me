@@ -22,6 +22,10 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         let appDelegate = object as! AppDelegate
         self.memes = appDelegate.memes
         
+        if self.memes.count == 0 {
+            navigateToMemeEditorView()
+        }
+        
         // Reload the rows and sections of the table view.
         tableView.reloadData()
     }
