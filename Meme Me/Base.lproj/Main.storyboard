@@ -43,7 +43,7 @@
                                 <items>
                                     <navigationItem id="lSw-C1-ujq">
                                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="gC0-tV-g9X"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gnW-gF-EVV"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gnW-gF-EVV"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
