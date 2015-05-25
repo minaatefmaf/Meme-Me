@@ -32,8 +32,10 @@ class MemeTopTextFieldDelegate: NSObject, UITextFieldDelegate {
         }
         
         // Maintain the same defaults for a new editing (if nothing is entered at the first edit)
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = NSTextAlignment.Center
+        if textField.text.isEmpty {
+            textField.defaultTextAttributes = memeTextAttributes
+            textField.textAlignment = NSTextAlignment.Center
+        }
         
         return true
     }
