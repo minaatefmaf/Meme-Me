@@ -94,9 +94,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func cancelMemeEditor(sender: UIBarButtonItem) {
+        // Navigate to the tab bar (SentMemes)
         navigateToTheTabBarController()
     }
     
+    // Navigate to the tab bar (SentMemes) when needed
     func navigateToTheTabBarController() {
         var controller: UITabBarController
         controller = self.storyboard?.instantiateViewControllerWithIdentifier("UITabBarController") as! UITabBarController

@@ -100,7 +100,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="uVL-pm-kXZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="sS8-F9-0Wb">
                             <connections>
-                                <action selector="AddMeme:" destination="1Lb-Og-f4J" id="5pI-xN-PKy"/>
+                                <action selector="addMeme:" destination="1Lb-Og-f4J" id="aR6-X7-aYg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -142,7 +142,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="pk4-Kr-uih">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rqY-xx-4Nx">
                             <connections>
-                                <action selector="AddMeme:" destination="VeW-A2-bCL" id="vmo-Pj-JUx"/>
+                                <action selector="addMeme:" destination="VeW-A2-bCL" id="wqh-Iw-NWh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

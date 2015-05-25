@@ -13,10 +13,12 @@ class MemesCollectionViewController: UIViewController {
     
     
     
-    @IBAction func AddMeme(sender: UIBarButtonItem) {
+    @IBAction func addMeme(sender: UIBarButtonItem) {
+        // Navigate to the MemeEditor
         navigateToMemeEditorView()
     }
     
+    // Navigate to the MemeEditor when needed
     func navigateToMemeEditorView() {
         var controller: MemeEditorViewController
         controller = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
