@@ -15,6 +15,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var toolBar: UIToolbar!
+    
     // Add references to the delegates
     let memeTopTextFieldDelegate = MemeTopTextFieldDelegate()
     let memeBottomTextFieldDelegate = MemeBottomTextFieldDelegate()
@@ -136,11 +139,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func generateMemedImage() -> UIImage {
+        
+        // Hide navigationBar and toolBar
+        navigationBar.hidden = true
+        toolBar.hidden = true
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+        
+        // Show navigationBar and toolBar
+        navigationBar.hidden = false
+        toolBar.hidden = false
         
         return memedImage
     }
