@@ -20,7 +20,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnW-RN-mDG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" id="Cfz-oX-KdG"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="d9U-Nq-IkX"/>
+                                    <barButtonItem systemItem="camera" id="Cfz-oX-KdG"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="PXT-eB-6Rl"/>
+                                    <barButtonItem title="Album" id="wZ0-4G-cav"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NGy-q4-ZHy"/>
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aEf-Wm-pJc">
