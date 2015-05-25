@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
     
@@ -22,8 +22,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pickAnImageFromAlbum(sender: UIBarButtonItem) {
-        
+        pickAnImage(UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
+    // A general function to pick an image from a given source.
+    // Its soul purpose is to surve for the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
+    func pickAnImage(sourceType: UIImagePickerControllerSourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = sourceType
+        self.presentViewController(pickerController, animated: true, completion: nil)
+    }
+
 }
 
