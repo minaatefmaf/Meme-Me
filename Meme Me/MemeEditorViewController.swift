@@ -46,6 +46,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         pickerController.sourceType = sourceType
         self.presentViewController(pickerController, animated: true, completion: nil)
     }
+    
+    // Set the chosen image to our imagePickerView
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.imagePickerView.image = image
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
 
