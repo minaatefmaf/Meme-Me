@@ -140,7 +140,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="pk4-Kr-uih">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rqY-xx-4Nx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rqY-xx-4Nx">
+                            <connections>
+                                <action selector="AddMeme:" destination="VeW-A2-bCL" id="vmo-Pj-JUx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GD6-Fy-UBc" userLabel="First Responder" sceneMemberID="firstResponder"/>

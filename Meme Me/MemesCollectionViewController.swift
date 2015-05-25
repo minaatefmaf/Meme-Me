@@ -10,4 +10,19 @@ import UIKit
 
 class MemesCollectionViewController: UIViewController {
     
+    
+    
+    
+    @IBAction func AddMeme(sender: UIBarButtonItem) {
+        navigateToMemeEditorView()
+    }
+    
+    func navigateToMemeEditorView() {
+        var controller: MemeEditorViewController
+        controller = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    
 }
