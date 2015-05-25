@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aEf-Wm-pJc">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qnW-RN-mDG">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
@@ -35,26 +38,39 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NGy-q4-ZHy"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aEf-Wm-pJc">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hC-O2-zY8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="lSw-C1-ujq">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="gC0-tV-g9X"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gnW-gF-EVV"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="aEf-Wm-pJc" secondAttribute="bottom" id="3IV-af-hho"/>
                             <constraint firstItem="qnW-RN-mDG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="47q-2R-7zQ"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qnW-RN-mDG" secondAttribute="bottom" id="E8W-ok-BGJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4hC-O2-zY8" secondAttribute="trailing" constant="-16" id="Nto-ZA-SCI"/>
                             <constraint firstItem="aEf-Wm-pJc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UvT-J9-X5y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qnW-RN-mDG" secondAttribute="trailing" constant="-16" id="f7b-g7-nWY"/>
+                            <constraint firstItem="4hC-O2-zY8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jxy-Js-eP5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aEf-Wm-pJc" secondAttribute="trailing" constant="-16" id="p0t-L0-bfg"/>
+                            <constraint firstItem="4hC-O2-zY8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="vht-Ox-fcS"/>
                             <constraint firstItem="aEf-Wm-pJc" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="weO-7r-zzf"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="qnW-RN-mDG"/>
                                 <exclude reference="aEf-Wm-pJc"/>
+                                <exclude reference="qnW-RN-mDG"/>
+                                <exclude reference="4hC-O2-zY8"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Nto-ZA-SCI"/>
+                                <exclude reference="jxy-Js-eP5"/>
+                                <exclude reference="vht-Ox-fcS"/>
                                 <exclude reference="UvT-J9-X5y"/>
                                 <exclude reference="p0t-L0-bfg"/>
                                 <exclude reference="weO-7r-zzf"/>
@@ -66,10 +82,14 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="qnW-RN-mDG"/>
                                 <include reference="aEf-Wm-pJc"/>
+                                <include reference="qnW-RN-mDG"/>
+                                <include reference="4hC-O2-zY8"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Nto-ZA-SCI"/>
+                                <include reference="jxy-Js-eP5"/>
+                                <include reference="vht-Ox-fcS"/>
                                 <include reference="UvT-J9-X5y"/>
                                 <include reference="p0t-L0-bfg"/>
                                 <include reference="weO-7r-zzf"/>
