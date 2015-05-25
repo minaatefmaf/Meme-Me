@@ -32,14 +32,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         
-        // Set the textfields' initial text
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-        
-        // Align the text in the textfields to center.
-        topTextField.textAlignment = NSTextAlignment.Center
-        bottomTextField.textAlignment = NSTextAlignment.Center
-        
         // Assign each textfield to its proper delegate
         topTextField.delegate = memeTopTextFieldDelegate
         bottomTextField.delegate = memeBottomTextFieldDelegate
@@ -48,6 +40,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Set the textfields' initial text
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        
+        // Align the text in the textfields to center.
+        topTextField.textAlignment = NSTextAlignment.Center
+        bottomTextField.textAlignment = NSTextAlignment.Center
         
         // Disable the camera button if the device doesn't have a camera (e.g. the simulator)
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
