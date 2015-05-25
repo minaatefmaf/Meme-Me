@@ -10,6 +10,8 @@ import UIKit
 
 class MemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var memes: [Meme]!
 
     override func viewWillAppear(animated: Bool) {
@@ -19,6 +21,9 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         self.memes = appDelegate.memes
+        
+        // Reload the rows and sections of the table view.
+        tableView.reloadData()
     }
     
     @IBAction func addMeme(sender: UIBarButtonItem) {
@@ -43,8 +48,8 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         
         // Set the name and image
         let meme = self.memes[indexPath.row]
-        cell.textLabel?.text = meme.topText
-        //cell.imageView?.image = meme.memedImage
+        cell.textLabel?.text = meme.topText + "..." + meme.bottomText
+        cell.imageView?.image = meme.memedImage
         
         return cell
     }
