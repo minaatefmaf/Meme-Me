@@ -90,7 +90,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
-        
     }
     
     @IBAction func cancelMemeEditor(sender: UIBarButtonItem) {
@@ -169,7 +168,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     func save() {
         // Create the meme
-        var meme = Meme(topText: topTextField.text!,
+        let meme = Meme(topText: topTextField.text!,
                         bottomText: bottomTextField.text!,
                         image: imagePickerView.image!,
                         memedImage: generateMemedImage())

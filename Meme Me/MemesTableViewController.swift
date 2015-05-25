@@ -18,8 +18,9 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         // Retrieve the sent memes.
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
-         memes = appDelegate.memes
+        self.memes = appDelegate.memes
     }
+    
     @IBAction func addMeme(sender: UIBarButtonItem) {
         // Navigate to the MemeEditor
         navigateToMemeEditorView()
@@ -39,11 +40,11 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MemeTableCell") as! UITableViewCell
-        let villain = self.memes[indexPath.row]
         
         // Set the name and image
-        cell.textLabel?.text = memes[indexPath.row].topText
-        //cell.imageView?.image = UIImage(named: memes[indexPath.row].memedImage)
+        let meme = self.memes[indexPath.row]
+        cell.textLabel?.text = meme.topText
+        //cell.imageView?.image = meme.memedImage
         
         return cell
     }
