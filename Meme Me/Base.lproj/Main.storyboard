@@ -47,15 +47,33 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pek-OT-3yS">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eE0-dW-rj2">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="eE0-dW-rj2" secondAttribute="centerX" id="2oc-fR-Cuv"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="aEf-Wm-pJc" secondAttribute="bottom" id="3IV-af-hho"/>
                             <constraint firstItem="qnW-RN-mDG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="47q-2R-7zQ"/>
+                            <constraint firstAttribute="centerX" secondItem="Pek-OT-3yS" secondAttribute="centerX" id="4Oh-h6-orO"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qnW-RN-mDG" secondAttribute="bottom" id="E8W-ok-BGJ"/>
+                            <constraint firstItem="Pek-OT-3yS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="GDC-qP-02n"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="eE0-dW-rj2" secondAttribute="bottom" constant="100" id="HMX-Yd-a9f"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4hC-O2-zY8" secondAttribute="trailing" constant="-16" id="Nto-ZA-SCI"/>
                             <constraint firstItem="aEf-Wm-pJc" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UvT-J9-X5y"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pek-OT-3yS" secondAttribute="trailing" constant="-16" id="dec-of-pMm"/>
+                            <constraint firstItem="eE0-dW-rj2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="f4M-Lf-8UW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qnW-RN-mDG" secondAttribute="trailing" constant="-16" id="f7b-g7-nWY"/>
+                            <constraint firstItem="Pek-OT-3yS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="fET-G4-swo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eE0-dW-rj2" secondAttribute="trailing" constant="-16" id="i6g-sf-YAC"/>
                             <constraint firstItem="4hC-O2-zY8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="jxy-Js-eP5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aEf-Wm-pJc" secondAttribute="trailing" constant="-16" id="p0t-L0-bfg"/>
                             <constraint firstItem="4hC-O2-zY8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="vht-Ox-fcS"/>
@@ -66,6 +84,8 @@
                                 <exclude reference="aEf-Wm-pJc"/>
                                 <exclude reference="qnW-RN-mDG"/>
                                 <exclude reference="4hC-O2-zY8"/>
+                                <exclude reference="Pek-OT-3yS"/>
+                                <exclude reference="eE0-dW-rj2"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Nto-ZA-SCI"/>
@@ -74,10 +94,18 @@
                                 <exclude reference="UvT-J9-X5y"/>
                                 <exclude reference="p0t-L0-bfg"/>
                                 <exclude reference="weO-7r-zzf"/>
+                                <exclude reference="4Oh-h6-orO"/>
+                                <exclude reference="GDC-qP-02n"/>
+                                <exclude reference="dec-of-pMm"/>
+                                <exclude reference="fET-G4-swo"/>
+                                <exclude reference="2oc-fR-Cuv"/>
+                                <exclude reference="f4M-Lf-8UW"/>
+                                <exclude reference="i6g-sf-YAC"/>
                                 <exclude reference="47q-2R-7zQ"/>
                                 <exclude reference="f7b-g7-nWY"/>
                                 <exclude reference="3IV-af-hho"/>
                                 <exclude reference="E8W-ok-BGJ"/>
+                                <exclude reference="HMX-Yd-a9f"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -85,6 +113,8 @@
                                 <include reference="aEf-Wm-pJc"/>
                                 <include reference="qnW-RN-mDG"/>
                                 <include reference="4hC-O2-zY8"/>
+                                <include reference="Pek-OT-3yS"/>
+                                <include reference="eE0-dW-rj2"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="Nto-ZA-SCI"/>
@@ -93,17 +123,27 @@
                                 <include reference="UvT-J9-X5y"/>
                                 <include reference="p0t-L0-bfg"/>
                                 <include reference="weO-7r-zzf"/>
+                                <include reference="4Oh-h6-orO"/>
+                                <include reference="GDC-qP-02n"/>
+                                <include reference="dec-of-pMm"/>
+                                <include reference="fET-G4-swo"/>
+                                <include reference="2oc-fR-Cuv"/>
+                                <include reference="f4M-Lf-8UW"/>
+                                <include reference="i6g-sf-YAC"/>
                                 <include reference="47q-2R-7zQ"/>
                                 <include reference="f7b-g7-nWY"/>
                                 <include reference="3IV-af-hho"/>
                                 <include reference="E8W-ok-BGJ"/>
+                                <include reference="HMX-Yd-a9f"/>
                             </mask>
                         </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="bottomTextField" destination="eE0-dW-rj2" id="Gnj-r4-5F9"/>
                         <outlet property="cameraButton" destination="Cfz-oX-KdG" id="oNj-nD-4rf"/>
                         <outlet property="imagePickerView" destination="aEf-Wm-pJc" id="p7T-BV-Szn"/>
+                        <outlet property="topTextField" destination="Pek-OT-3yS" id="ES1-HV-4BE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
