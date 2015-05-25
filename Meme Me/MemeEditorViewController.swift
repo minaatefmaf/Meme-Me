@@ -127,6 +127,23 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
 
+    func save() {
+        // Create the meme
+        var meme = Meme(topText: topTextField.text!,
+                        bottomText: bottomTextField.text!,
+                        image: imagePickerView.image!,
+                        memedImage: generateMemedImage())
+    }
+    
+    func generateMemedImage() -> UIImage {
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return memedImage
+    }
 
 }
 
