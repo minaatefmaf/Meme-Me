@@ -33,14 +33,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         
-        // Assign each textfield to its proper delegate
-        topTextField.delegate = memeTopTextFieldDelegate
-        bottomTextField.delegate = memeBottomTextFieldDelegate
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
         // Set the textfields' initial text
         topTextField.text = "TOP"
         bottomTextField.text = "BOTTOM"
@@ -49,13 +41,21 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.textAlignment = NSTextAlignment.Center
         bottomTextField.textAlignment = NSTextAlignment.Center
         
+        // Disable the share button initially.
+        shareButton.enabled = false
+        
+        // Assign each textfield to its proper delegate
+        topTextField.delegate = memeTopTextFieldDelegate
+        bottomTextField.delegate = memeBottomTextFieldDelegate
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // Disable the camera button if the device doesn't have a camera (e.g. the simulator)
         if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             cameraButton.enabled = false
         }
-        
-        // Disable the share button initially.
-        shareButton.enabled = false
         
         // Subscribe to keyboard notifications to allow the view to raise when necessary
         self.subscribeToKeyboardNotifications()
@@ -95,6 +95,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imagePickerView.image = image
+            // Enable the share button when an image has been chosen.
+            shareButton.enabled = true
         }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
