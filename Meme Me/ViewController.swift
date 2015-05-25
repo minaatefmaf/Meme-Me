@@ -25,6 +25,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     @IBAction func pickAnImageFromCamera(sender: UIBarButtonItem) {
         pickAnImage(UIImagePickerControllerSourceType.Camera)
     }
