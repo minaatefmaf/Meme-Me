@@ -21,9 +21,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="d9U-Nq-IkX"/>
-                                    <barButtonItem systemItem="camera" id="Cfz-oX-KdG"/>
+                                    <barButtonItem systemItem="camera" id="Cfz-oX-KdG">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="vXZ-lx-hvc" id="lie-9x-SOW"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="PXT-eB-6Rl"/>
-                                    <barButtonItem title="Album" id="wZ0-4G-cav"/>
+                                    <barButtonItem title="Album" id="wZ0-4G-cav">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="vXZ-lx-hvc" id="Me1-i1-gGS"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NGy-q4-ZHy"/>
                                 </items>
                             </toolbar>
@@ -72,6 +80,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="imagePickerView" destination="aEf-Wm-pJc" id="p7T-BV-Szn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
