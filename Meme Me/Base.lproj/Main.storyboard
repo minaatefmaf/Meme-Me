@@ -121,13 +121,13 @@
                                                     <exclude reference="LON-o9-x2z"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="8rE-fY-IBA"/>
-                                                    <exclude reference="IUQ-2P-6hO"/>
-                                                    <exclude reference="2Fs-lZ-YFA"/>
-                                                    <exclude reference="6OT-Qr-Deh"/>
                                                     <exclude reference="0bu-6h-IGG"/>
                                                     <exclude reference="Wx0-iB-bpK"/>
                                                     <exclude reference="p6c-vn-Mkl"/>
+                                                    <exclude reference="2Fs-lZ-YFA"/>
+                                                    <exclude reference="6OT-Qr-Deh"/>
+                                                    <exclude reference="8rE-fY-IBA"/>
+                                                    <exclude reference="IUQ-2P-6hO"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -137,13 +137,13 @@
                                                     <include reference="LON-o9-x2z"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="8rE-fY-IBA"/>
-                                                    <include reference="IUQ-2P-6hO"/>
-                                                    <include reference="2Fs-lZ-YFA"/>
-                                                    <include reference="6OT-Qr-Deh"/>
                                                     <include reference="0bu-6h-IGG"/>
                                                     <include reference="Wx0-iB-bpK"/>
                                                     <include reference="p6c-vn-Mkl"/>
+                                                    <include reference="2Fs-lZ-YFA"/>
+                                                    <include reference="6OT-Qr-Deh"/>
+                                                    <include reference="8rE-fY-IBA"/>
+                                                    <include reference="IUQ-2P-6hO"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
