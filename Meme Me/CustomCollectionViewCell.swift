@@ -10,5 +10,6 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     
-        @IBOutlet weak var memedImageView: UIImageView!
+    @IBOutlet weak var memedImageView: UIImageView!
+    
 }

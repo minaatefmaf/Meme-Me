@@ -22,6 +22,7 @@ class MemesCollectionViewController: UIViewController {
         let appDelegate = object as! AppDelegate
         self.memes = appDelegate.memes
         
+        // If the user has no sent memes, the MemeEditor is displayed first.
         if self.memes.count == 0 {
             navigateToMemeEditorView()
         }
