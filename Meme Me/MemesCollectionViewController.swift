@@ -10,8 +10,25 @@ import UIKit
 
 class MemesCollectionViewController: UIViewController {
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    var memes: [Meme]!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Retrieve the sent memes.
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        self.memes = appDelegate.memes
+        
+        if self.memes.count == 0 {
+            navigateToMemeEditorView()
+        }
+        
+        // Reload the rows and sections of the table view.
+        collectionView.reloadData()
+    }
     
     @IBAction func addMeme(sender: UIBarButtonItem) {
         // Navigate to the MemeEditor
@@ -26,5 +43,29 @@ class MemesCollectionViewController: UIViewController {
         self.presentViewController(controller, animated: true, completion: nil)
     }
     
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.memes.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CustomCollectionViewCell", forIndexPath: indexPath) as! CustomCollectionViewCell
+        
+        // Set the name and image
+        let meme = self.memes[indexPath.row]
+        cell.memedImageView?.image = meme.memedImage
+        
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath:NSIndexPath)
+    {
+        
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemesDetailViewController") as! MemesDetailViewController
+        detailController.meme = self.memes[indexPath.row]
+        self.navigationController!.pushViewController(detailController, animated: true)
+        
+    }
+
     
 }

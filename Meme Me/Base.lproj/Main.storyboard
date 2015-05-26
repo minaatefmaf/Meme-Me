@@ -300,15 +300,122 @@
                     <view key="view" contentMode="scaleToFill" id="uK7-lb-DCz">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UMi-oK-adM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zww-hJ-J6r">
+                                    <size key="itemSize" width="106" height="104"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="PGd-5i-OoT">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomCollectionViewCell" id="n3h-Og-UsP" customClass="CustomCollectionViewCell" customModule="Meme_Me" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="106" height="104"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NdE-XF-F9N">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="104" id="cJ8-vJ-mSW"/>
+                                                        <constraint firstAttribute="width" constant="106" id="vNO-Nt-GMf"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="cJ8-vJ-mSW"/>
+                                                            <exclude reference="vNO-Nt-GMf"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="cJ8-vJ-mSW"/>
+                                                            <include reference="vNO-Nt-GMf"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="centerY" secondItem="NdE-XF-F9N" secondAttribute="centerY" id="kFk-qL-2HH"/>
+                                            <constraint firstAttribute="centerX" secondItem="NdE-XF-F9N" secondAttribute="centerX" id="uPH-O3-Z41"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="NdE-XF-F9N"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="kFk-qL-2HH"/>
+                                                <exclude reference="uPH-O3-Z41"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="NdE-XF-F9N"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="kFk-qL-2HH"/>
+                                                <include reference="uPH-O3-Z41"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="memedImageView" destination="NdE-XF-F9N" id="oy7-s8-DZE"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="VeW-A2-bCL" id="gMj-GO-sot"/>
+                                    <outlet property="delegate" destination="VeW-A2-bCL" id="AUx-ij-x3I"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UMi-oK-adM" firstAttribute="bottom" secondItem="uK7-lb-DCz" secondAttribute="bottomMargin" id="Uwd-Nn-diW"/>
+                            <constraint firstItem="UMi-oK-adM" firstAttribute="top" secondItem="uK7-lb-DCz" secondAttribute="topMargin" id="j66-rA-ekO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UMi-oK-adM" secondAttribute="trailing" constant="-16" id="qoV-e9-88U"/>
+                            <constraint firstItem="UMi-oK-adM" firstAttribute="leading" secondItem="uK7-lb-DCz" secondAttribute="leadingMargin" constant="-16" id="zS5-hj-2V7"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="UMi-oK-adM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Uwd-Nn-diW"/>
+                                <exclude reference="j66-rA-ekO"/>
+                                <exclude reference="qoV-e9-88U"/>
+                                <exclude reference="zS5-hj-2V7"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="UMi-oK-adM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Uwd-Nn-diW"/>
+                                <include reference="j66-rA-ekO"/>
+                                <include reference="qoV-e9-88U"/>
+                                <include reference="zS5-hj-2V7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Sent Memes" id="pk4-Kr-uih">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rqY-xx-4Nx">
                             <connections>
-                                <action selector="addMeme:" destination="VeW-A2-bCL" id="wqh-Iw-NWh"/>
+                                <action selector="addMeme:" destination="VeW-A2-bCL" id="HdD-Eg-JdE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="UMi-oK-adM" id="WgW-6G-FOF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GD6-Fy-UBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
