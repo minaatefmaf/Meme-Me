@@ -123,7 +123,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // Set the chosen image to our imagePickerView
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imagePickerView.image = image
             // Enable the share button when an image has been chosen.
@@ -168,8 +168,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     func save() {
         // Create the meme
-        let meme = Meme(topText: topTextField.text,
-                        bottomText: bottomTextField.text,
+        let meme = Meme(topText: topTextField.text!,
+                        bottomText: bottomTextField.text!,
                         image: imagePickerView.image!,
                         memedImage: generateMemedImage())
         

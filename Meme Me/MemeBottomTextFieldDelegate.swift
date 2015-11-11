@@ -27,7 +27,7 @@ class MemeBottomTextFieldDelegate: NSObject, UITextFieldDelegate {
         }
         
         // Maintain the same defaults for a new editing (if nothing is entered at the first edit)
-        if textField.text.isEmpty {
+        if textField.text!.isEmpty {
             textField.defaultTextAttributes = memeTextAttributes
             textField.textAlignment = NSTextAlignment.Center
         }
@@ -36,7 +36,7 @@ class MemeBottomTextFieldDelegate: NSObject, UITextFieldDelegate {
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var newText = textField.text as NSString
+        var newText = textField.text! as NSString
         newText = newText.stringByReplacingCharactersInRange(range, withString: string)
         return true
     }
