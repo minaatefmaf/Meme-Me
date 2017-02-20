@@ -16,7 +16,7 @@ class MemeTopTextFieldDelegate: NSObject, UITextFieldDelegate {
     // Set the default text attributes dictionary.
     let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         // Should clear the initial value "TOP" when a user clicks the textfield for the first time.
         if firstEdit {
@@ -29,19 +29,19 @@ class MemeTopTextFieldDelegate: NSObject, UITextFieldDelegate {
         // Maintain the same defaults for a new editing (if nothing is entered at the first edit)
         if textField.text!.isEmpty {
             textField.defaultTextAttributes = memeTextAttributes
-            textField.textAlignment = NSTextAlignment.Center
+            textField.textAlignment = NSTextAlignment.center
         }
         
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var newText = textField.text! as NSString
-        newText = newText.stringByReplacingCharactersInRange(range, withString: string)
+        newText = newText.replacingCharacters(in: range, with: string) as NSString
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }

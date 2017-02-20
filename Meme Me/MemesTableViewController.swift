@@ -14,11 +14,11 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
     
     var memes: [Meme]!
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Retrieve the sent memes.
-        let object = UIApplication.sharedApplication().delegate
+        let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         self.memes = appDelegate.memes
         
@@ -31,7 +31,7 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
     }
     
-    @IBAction func addMeme(sender: UIBarButtonItem) {
+    @IBAction func addMeme(_ sender: UIBarButtonItem) {
         // Navigate to the MemeEditor
         navigateToMemeEditorView()
     }
@@ -39,17 +39,17 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
     // Navigate to the MemeEditor when needed
     func navigateToMemeEditorView() {
         var controller: MemeEditorViewController
-        controller = self.storyboard?.instantiateViewControllerWithIdentifier("MemeEditorViewController") as! MemeEditorViewController
+        controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
-        self.presentViewController(controller, animated: true, completion: nil)
+        self.present(controller, animated: true, completion: nil)
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.memes.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CustomTableViewCell") as! CustomTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
         
         // Set the name and image
         let meme = self.memes[indexPath.row]
@@ -60,8 +60,8 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemesDetailViewController") as! MemesDetailViewController
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
         detailController.meme = self.memes[indexPath.row]
         
         self.navigationController!.pushViewController(detailController, animated: true)
