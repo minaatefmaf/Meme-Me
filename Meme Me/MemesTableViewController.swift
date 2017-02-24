@@ -55,7 +55,7 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         let meme = self.memes[indexPath.row]
         cell.labelTop.text =  meme.topText
         cell.labelBottom.text =  meme.bottomText
-        cell.imageView?.image = meme.memedImage
+        cell.memedImageView.image = meme.memedImage
         
         return cell
     }
