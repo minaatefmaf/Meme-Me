@@ -19,6 +19,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
     
+    private var tapRecognizer: UITapGestureRecognizer? = nil
+    
     // Add references to the delegates
     let memeTopTextFieldDelegate = MemeTopTextFieldDelegate()
     let memeBottomTextFieldDelegate = MemeBottomTextFieldDelegate()
@@ -47,6 +49,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Assign each textfield to its proper delegate
         topTextField.delegate = memeTopTextFieldDelegate
         bottomTextField.delegate = memeBottomTextFieldDelegate
+        
+        // Initialize and configure the tap recognizer
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
+        tapRecognizer?.numberOfTapsRequired = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +65,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // Subscribe to keyboard notifications to allow the view to raise when necessary
         self.subscribeToKeyboardNotifications()
+        
+        // Add the tap recognizer
+        addKeyboardDismissRecognizer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +75,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
         // Unsubscribe to keyboard notifications
         self.unsubscribeFromKeyboardNotifications()
+        
+        // Remove the tap recognizer
+        removeKeyboardDismissRecognizer()
     }
 
 
@@ -164,6 +176,20 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Unsubscribe from the notifications we subscribed earlier.
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    // MARK: - Keyboard Fixes
+    
+    func addKeyboardDismissRecognizer() {
+        view.addGestureRecognizer(tapRecognizer!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+        view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first                   responder status)
     }
 
     func save() {
