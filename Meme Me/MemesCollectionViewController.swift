@@ -67,7 +67,7 @@ class MemesCollectionViewController: UIViewController {
         
         // Set the name and image
         let meme = self.memes[indexPath.row]
-        cell.memedImageView?.image = meme.memedImage
+        cell.memedImageView.image = meme.memedImage
         
         return cell
     }

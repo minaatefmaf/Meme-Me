@@ -126,7 +126,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // A general function to pick an image from a given source.
-    // Its soul purpose is to surve for the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
+    // Its soul purpose is to serve the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
     func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
