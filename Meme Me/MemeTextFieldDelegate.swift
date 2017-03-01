@@ -1,5 +1,5 @@
 //
-//  MemeBottomTextFieldDelegate.swift
+//  MemeTextFieldDelegate.swift
 //  Meme Me
 //
 //  Created by Mina Atef on 5/25/15.
@@ -8,22 +8,16 @@
 
 import UIKit
 
-class MemeBottomTextFieldDelegate: NSObject, UITextFieldDelegate {
-    
-    // Should clear the initial value "Bottom" when a user clicks the textfield for the first time.
-    var firstEdit = true
+class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     // Set the default text attributes dictionary.
     let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        // Should clear the initial value "Bottom" when a user clicks the textfield for the first time.
-        if firstEdit {
+        // Should clear the initial value when a user clicks the textfield for the first time.
+        if textField.text == "TOP TEXT" || textField.text == "BOTTOM TEXT" {
             textField.text = ""
-            
-            // The user can continue editing the text he entered so far!
-            firstEdit = false
         }
         
         // Maintain the same defaults for a new editing (if nothing is entered at the first edit)

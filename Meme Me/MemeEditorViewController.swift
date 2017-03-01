@@ -22,8 +22,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     private var tapRecognizer: UITapGestureRecognizer? = nil
     
     // Add references to the delegates
-    let memeTopTextFieldDelegate = MemeTopTextFieldDelegate()
-    let memeBottomTextFieldDelegate = MemeBottomTextFieldDelegate()
+    let memeTopTextFieldDelegate = MemeTextFieldDelegate()
+    let memeBottomTextFieldDelegate = MemeTextFieldDelegate()
     
     // Set the default text attributes dictionary.
     let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
@@ -36,8 +36,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.defaultTextAttributes = memeTextAttributes
         
         // Set the textfields' initial text
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
+        topTextField.text = "TOP TEXT"
+        bottomTextField.text = "BOTTOM TEXT"
         
         // Align the text in the textfields to center.
         topTextField.textAlignment = NSTextAlignment.center

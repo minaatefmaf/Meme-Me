@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		2E1A96C11B13F74000474E17 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1A96C01B13F74000474E17 /* CustomTableViewCell.swift */; };
 		2E1A96C51B140DA200474E17 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1A96C41B140DA200474E17 /* CustomCollectionViewCell.swift */; };
-		2E5817CA1B13393200EF785E /* MemeTopTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5817C91B13393200EF785E /* MemeTopTextFieldDelegate.swift */; };
-		2E5817CC1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5817CB1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift */; };
+		2E5817CC1B133DB600EF785E /* MemeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5817CB1B133DB600EF785E /* MemeTextFieldDelegate.swift */; };
 		2ECC536F1B0CC318007FCAF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC536E1B0CC318007FCAF7 /* AppDelegate.swift */; };
 		2ECC53711B0CC318007FCAF7 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC53701B0CC318007FCAF7 /* MemeEditorViewController.swift */; };
 		2ECC53741B0CC318007FCAF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ECC53721B0CC318007FCAF7 /* Main.storyboard */; };
@@ -37,8 +36,7 @@
 /* Begin PBXFileReference section */
 		2E1A96C01B13F74000474E17 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		2E1A96C41B140DA200474E17 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		2E5817C91B13393200EF785E /* MemeTopTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTopTextFieldDelegate.swift; sourceTree = "<group>"; };
-		2E5817CB1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeBottomTextFieldDelegate.swift; sourceTree = "<group>"; };
+		2E5817CB1B133DB600EF785E /* MemeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		2ECC53691B0CC318007FCAF7 /* Meme Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ECC536D1B0CC318007FCAF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2ECC536E1B0CC318007FCAF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,8 +99,7 @@
 				2ECC53751B0CC318007FCAF7 /* Images.xcassets */,
 				2ECC53771B0CC318007FCAF7 /* LaunchScreen.xib */,
 				2ECC536C1B0CC318007FCAF7 /* Supporting Files */,
-				2E5817C91B13393200EF785E /* MemeTopTextFieldDelegate.swift */,
-				2E5817CB1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift */,
+				2E5817CB1B133DB600EF785E /* MemeTextFieldDelegate.swift */,
 				2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */,
 				2ECEDABD1B1380E700D6FB36 /* Meme.swift */,
 				2ECEDABF1B13947200D6FB36 /* MemesTableViewController.swift */,
@@ -248,12 +245,11 @@
 				2ECEDAC21B13948100D6FB36 /* MemesCollectionViewController.swift in Sources */,
 				2ECC53711B0CC318007FCAF7 /* MemeEditorViewController.swift in Sources */,
 				2ECD19FA1B13623600938908 /* DefaultTextAttributes.swift in Sources */,
-				2E5817CA1B13393200EF785E /* MemeTopTextFieldDelegate.swift in Sources */,
 				2ECEDABE1B1380E700D6FB36 /* Meme.swift in Sources */,
 				2E1A96C11B13F74000474E17 /* CustomTableViewCell.swift in Sources */,
 				2ECEDAC01B13947200D6FB36 /* MemesTableViewController.swift in Sources */,
 				2ECC536F1B0CC318007FCAF7 /* AppDelegate.swift in Sources */,
-				2E5817CC1B133DB600EF785E /* MemeBottomTextFieldDelegate.swift in Sources */,
+				2E5817CC1B133DB600EF785E /* MemeTextFieldDelegate.swift in Sources */,
 				2E1A96C51B140DA200474E17 /* CustomCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
