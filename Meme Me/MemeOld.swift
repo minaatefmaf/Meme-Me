@@ -1,5 +1,5 @@
 //
-//  Meme.swift
+//  MemeOld.swift
 //  Meme Me
 //
 //  Created by Mina Atef on 5/25/15.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Meme {
+struct MemeOld {
     let topText: String
     let bottomText: String
     let image: UIImage
