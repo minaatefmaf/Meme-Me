@@ -7,28 +7,26 @@
 //
 
 import UIKit
+import CoreData
 
-class MemesTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MemesTableViewController: CoreDataTableViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    
-    var memes: [Meme]!
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        // Retrieve the sent memes.
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        self.memes = appDelegate.memes
+        // Get the core data stack
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let coreDataStack = delegate.coreDataStack
         
-        // If the user has no sent memes, the MemeEditor is displayed first.
-        if self.memes.count == 0 {
-            navigateToMemeEditorView()
-        }
+        // Create a fetchrequest
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Meme.Keys.EntityName)
+        fetchRequest.sortDescriptors = []
         
-        // Reload the rows and sections of the table view.
-        tableView.reloadData()
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                                  managedObjectContext: coreDataStack.context,
+                                                                  sectionNameKeyPath: nil,
+                                                                  cacheName: nil)
+        
     }
     
     @IBAction func addMeme(_ sender: UIBarButtonItem) {
@@ -44,25 +42,27 @@ class MemesTableViewController: UIViewController, UITableViewDataSource, UITable
         self.present(controller, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.memes.count
-    }
+    // MARK: - UITableView Methods
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Get the meme
+        let meme = fetchedResultsController!.object(at: indexPath) as! Meme
+        
+        // Create the cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         
         // Set the name and image
-        let meme = self.memes[indexPath.row]
-        cell.labelTop.text =  meme.topText
-        cell.labelBottom.text =  meme.bottomText
-        cell.memedImageView.image = meme.memedImage
+        cell.labelTop.text = meme.topText
+        cell.labelBottom.text = meme.bottomText
+        //cell.memedImageView.image = UIImage()
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
-        detailController.meme = self.memes[indexPath.row]
+        // detailController.meme = Meme()
         
         self.navigationController!.pushViewController(detailController, animated: true)
     }

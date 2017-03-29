@@ -13,7 +13,7 @@ class MemesCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
-    var memes: [Meme]!
+    var memes: [MemeOld]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
