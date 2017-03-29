@@ -18,11 +18,6 @@ public class Meme: NSManagedObject {
         static let BottomText = "bottomText"
     }
     
-    // The standard Core Data init method.
-    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
-    }
-    
     // Initialize the class from a dictionary
     convenience init(dictionary: [String: AnyObject], context: NSManagedObjectContext) {
         
