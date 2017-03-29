@@ -9,7 +9,7 @@
 import UIKit
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
@@ -28,8 +28,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Set the default text attributes dictionary.
     let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
+    // Set the core data stack variable
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    var coreDataStack: CoreDataStack!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get the core data stack
+        coreDataStack = delegate.coreDataStack
         
         // Assign our defult text attributes to the textfields
         topTextField.defaultTextAttributes = memeTextAttributes
@@ -72,15 +79,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         // Unsubscribe to keyboard notifications
         self.unsubscribeFromKeyboardNotifications()
         
         // Remove the tap recognizer
         removeKeyboardDismissRecognizer()
     }
-
-
+    
+    
     override var prefersStatusBarHidden : Bool {
         // Hide the status bar
         return true
@@ -191,16 +198,37 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first                   responder status)
     }
-
+    
     func save() {
-        // Create the meme
-        let meme = MemeOld(topText: topTextField.text!,
-                        bottomText: bottomTextField.text!,
-                        image: imagePickerView.image!,
-                        memedImage: generateMemedImage())
+        // Create the files names on disc
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ddMMyyyy-HHmmss"
+        let originalImageName = formatter.string(from: currentDateTime)
+        let memedImageName = originalImageName + "-meme"
         
-        // Add it to the memes array in the Application Delegate
-        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
+        // Create the meme fictionary
+        let dictionary: [String : String] = [
+            Meme.Keys.TopText: topTextField.text!,
+            Meme.Keys.BottomText: bottomTextField.text!,
+            Meme.Keys.OriginalImageName: originalImageName,
+            Meme.Keys.MemedImageName: memedImageName
+        ]
+        
+        // Create the meme
+        let meme = Meme(dictionary: dictionary, context: coreDataStack.context)
+        
+        // Save the images to the disc
+        meme.originalImage = imagePickerView.image
+        meme.memedImage = generateMemedImage()
+        
+        // Persisit the meme to the disc
+        do {
+            try coreDataStack.saveContext()
+        } catch {
+            print("Error while saving.")
+        }
+        
     }
     
     func generateMemedImage() -> UIImage {
@@ -221,6 +249,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         return memedImage
     }
-
+    
 }
 

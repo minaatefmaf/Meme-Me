@@ -115,16 +115,16 @@
         <scene sceneID="vpC-zf-Ol7">
             <objects>
                 <tableViewController id="PiJ-q8-fdO" customClass="MemesTableViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lb9-Fs-Qh5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="lb9-Fs-Qh5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomTableViewCell" rowHeight="120" id="eMF-ug-utB">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomTableViewCell" rowHeight="120" id="eMF-ug-utB" customClass="CustomTableViewCell" customModule="Meme_Me" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMF-ug-utB" id="Cv8-50-wFI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OLk-cH-CaY">
@@ -163,6 +163,11 @@
                                         <constraint firstAttribute="leadingMargin" secondItem="OLk-cH-CaY" secondAttribute="leading" id="roH-h7-P8y"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="labelBottom" destination="zg6-vu-iKv" id="EGV-QM-WQF"/>
+                                    <outlet property="labelTop" destination="HmC-Je-nga" id="sSy-N6-HcS"/>
+                                    <outlet property="memedImageView" destination="Ou2-0u-e2u" id="F3q-FW-Q5T"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
