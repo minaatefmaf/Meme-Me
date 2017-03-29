@@ -23,9 +23,9 @@ class MemesTableViewController: CoreDataTableViewController {
         fetchRequest.sortDescriptors = []
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
-                                                                  managedObjectContext: coreDataStack.context,
-                                                                  sectionNameKeyPath: nil,
-                                                                  cacheName: nil)
+                                                              managedObjectContext: coreDataStack.context,
+                                                              sectionNameKeyPath: nil,
+                                                              cacheName: nil)
         
     }
     
@@ -34,13 +34,6 @@ class MemesTableViewController: CoreDataTableViewController {
         navigateToMemeEditorView()
     }
     
-    // Navigate to the MemeEditor when needed
-    func navigateToMemeEditorView() {
-        var controller: MemeEditorViewController
-        controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
-        
-        self.present(controller, animated: true, completion: nil)
-    }
     
     // MARK: - UITableView Methods
     
@@ -62,9 +55,22 @@ class MemesTableViewController: CoreDataTableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
-        // detailController.meme = Meme()
+        
+        // Set the meme
+        detailController.meme = fetchedResultsController!.object(at: indexPath) as! Meme
         
         self.navigationController!.pushViewController(detailController, animated: true)
+    }
+    
+    
+    // MARK: - Helper Methods
+    
+    // Navigate to the MemeEditor when needed
+    func navigateToMemeEditorView() {
+        var controller: MemeEditorViewController
+        controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
 }
