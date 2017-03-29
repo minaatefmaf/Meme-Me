@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 @objc(Image)
@@ -14,8 +15,33 @@ public class Image: NSManagedObject {
     
     struct Keys {
         static let EntityName = "Image"
-        static let MemedImagePath = "memedImageName"
-        static let OriginalImagePath = "originalImageName"
+        static let MemedImageName = "memedImageName"
+        static let OriginalImageName = "originalImageName"
+    }
+    
+    // Shared Image Cache
+    private let imageCache = ImageCache()
+    
+    // Get the original image
+    var originalImage: UIImage? {
+        get {
+            return imageCache.imageWithIdentifier(originalImageName)
+        }
+        
+        set {
+            imageCache.storeImage(newValue, withIdentifier: originalImageName!)
+        }
+    }
+    
+    // Get the memed image
+    var memedImage: UIImage? {
+        get {
+            return imageCache.imageWithIdentifier(memedImageName)
+        }
+        
+        set {
+            imageCache.storeImage(newValue, withIdentifier: memedImageName!)
+        }
     }
     
     // Initialize the class from a dictionary
@@ -26,13 +52,18 @@ public class Image: NSManagedObject {
             self.init(entity: entity, insertInto: context)
             
             // Initialize the properties
-            self.originalImageName = dictionary[Keys.OriginalImagePath] as! String!
-            self.memedImageName = dictionary[Keys.MemedImagePath] as! String!
+            self.originalImageName = dictionary[Keys.OriginalImageName] as! String!
+            self.memedImageName = dictionary[Keys.MemedImageName] as! String!
         } else {
             // Crash if the entity name isn't there
             fatalError("Unable to find Entity NameQ")
         }
         
+    }
+    
+    public override func prepareForDeletion() {
+        imageCache.deleteImage(withIdentifier: originalImageName!)
+        imageCache.deleteImage(withIdentifier: memedImageName!)
     }
 
 }
