@@ -18,6 +18,7 @@ extension Meme {
 
     @NSManaged public var bottomText: String?
     @NSManaged public var topText: String?
-    @NSManaged public var image: Image?
+    @NSManaged public var memedImageName: String?
+    @NSManaged public var originalImageName: String?
 
 }
