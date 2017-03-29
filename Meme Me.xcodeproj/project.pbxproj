@@ -86,7 +86,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E4B7E401E8AC842000BD182 /* Core Data */ = {
+		2E4B7E401E8AC842000BD182 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				2E4B7E381E8AC34F000BD182 /* Meme+CoreDataClass.swift */,
@@ -96,7 +96,24 @@
 				2E4B7E351E8AB51D000BD182 /* CoreDataStack.swift */,
 				2E09A1351E86A188002593A8 /* Model.xcdatamodeld */,
 			);
-			name = "Core Data";
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2E4B7E431E8B5BDD000BD182 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2ECC53701B0CC318007FCAF7 /* MemeEditorViewController.swift */,
+				2E5817CB1B133DB600EF785E /* MemeTextFieldDelegate.swift */,
+				2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */,
+				2ECEDABD1B1380E700D6FB36 /* MemeOld.swift */,
+				2E4B7E411E8B485F000BD182 /* CoreDataTableViewController.swift */,
+				2ECEDABF1B13947200D6FB36 /* MemesTableViewController.swift */,
+				2ECEDAC11B13948100D6FB36 /* MemesCollectionViewController.swift */,
+				2ECEDAC91B13DF7A00D6FB36 /* MemesDetailViewController.swift */,
+				2E1A96C01B13F74000474E17 /* CustomTableViewCell.swift */,
+				2E1A96C41B140DA200474E17 /* CustomCollectionViewCell.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		2ECC53601B0CC318007FCAF7 = {
@@ -121,20 +138,9 @@
 			isa = PBXGroup;
 			children = (
 				2ECC536E1B0CC318007FCAF7 /* AppDelegate.swift */,
-				2E4B7E401E8AC842000BD182 /* Core Data */,
-				2ECC53701B0CC318007FCAF7 /* MemeEditorViewController.swift */,
 				2ECC53721B0CC318007FCAF7 /* Main.storyboard */,
-				2ECC53751B0CC318007FCAF7 /* Images.xcassets */,
-				2ECC53771B0CC318007FCAF7 /* LaunchScreen.xib */,
-				2E5817CB1B133DB600EF785E /* MemeTextFieldDelegate.swift */,
-				2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */,
-				2ECEDABD1B1380E700D6FB36 /* MemeOld.swift */,
-				2E4B7E411E8B485F000BD182 /* CoreDataTableViewController.swift */,
-				2ECEDABF1B13947200D6FB36 /* MemesTableViewController.swift */,
-				2ECEDAC11B13948100D6FB36 /* MemesCollectionViewController.swift */,
-				2ECEDAC91B13DF7A00D6FB36 /* MemesDetailViewController.swift */,
-				2E1A96C01B13F74000474E17 /* CustomTableViewCell.swift */,
-				2E1A96C41B140DA200474E17 /* CustomCollectionViewCell.swift */,
+				2E4B7E401E8AC842000BD182 /* Model */,
+				2E4B7E431E8B5BDD000BD182 /* Controller */,
 				2ECC536C1B0CC318007FCAF7 /* Supporting Files */,
 			);
 			path = "Meme Me";
@@ -143,6 +149,8 @@
 		2ECC536C1B0CC318007FCAF7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2ECC53751B0CC318007FCAF7 /* Images.xcassets */,
+				2ECC53771B0CC318007FCAF7 /* LaunchScreen.xib */,
 				2ECC536D1B0CC318007FCAF7 /* Info.plist */,
 			);
 			name = "Supporting Files";
