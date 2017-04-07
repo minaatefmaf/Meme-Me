@@ -12,9 +12,10 @@ class MemesDetailViewController: UIViewController {
     
     var meme: Meme!
     
+    private var tapRecognizer: UITapGestureRecognizer? = nil
+    
     // Use to show/hide the status bar
     var statusBarIsHidden = false
-    //self.setNeedsStatusBarAppearanceUpdate()
     
     override var prefersStatusBarHidden: Bool {
         // Show/Hide the status bar
@@ -27,6 +28,9 @@ class MemesDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.imageView!.image = meme.image?.getMemedImage()
+        
+        // Add the tap recognizer
+        view.addGestureRecognizer(tapRecognizer!)
     }
     
     override func viewDidLoad() {
@@ -39,12 +43,43 @@ class MemesDetailViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Remove the tap recognizer
+        view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    // MARK: - Tab Recognizer Methods
+    
+    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+        // Toggle the status bar
+        statusBarIsHidden = !statusBarIsHidden
+        setNeedsStatusBarAppearanceUpdate()
+        
+        // Toggle the navigation bar
+        navigationController?.navigationBar.isHidden = !(navigationController?.navigationBar.isHidden ?? false)
+        
+        // Toggle the view's background color
+        if view.backgroundColor == .white {
+            view.backgroundColor = .black
+        } else {
+            view.backgroundColor = .white
+        }
+    }
+    
+    
     // MARK: - UI Configurations
     
     func configureUI() {
         // Hide the tab bar
-        self.tabBarController?.tabBar.isHidden = true
-        // Temporarly hide the navigation bar
-        self.navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+        
+        // Initialize the view's background color to white
+        view.backgroundColor = .white
+        
+        // Initialize and configure the tap recognizer
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
+        tapRecognizer?.numberOfTapsRequired = 1
     }
 }

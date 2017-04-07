@@ -94,6 +94,9 @@ class MemesTableViewController: CoreDataTableViewController {
     // MARK: - UI Configurations
     
     func configureUI() {
+        // Show the navigation bar
+        navigationController?.navigationBar.isHidden = false
+            
         // Show the tab bar
         self.tabBarController?.tabBar.isHidden = false
     }
