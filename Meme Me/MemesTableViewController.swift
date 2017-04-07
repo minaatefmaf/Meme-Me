@@ -30,6 +30,13 @@ class MemesTableViewController: CoreDataTableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Configure the UI
+        configureUI()
+    }
+    
     @IBAction func addMeme(_ sender: UIBarButtonItem) {
         // Navigate to the MemeEditor
         navigateToMemeEditorView()
@@ -82,6 +89,13 @@ class MemesTableViewController: CoreDataTableViewController {
         controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    // MARK: - UI Configurations
+    
+    func configureUI() {
+        // Show the tab bar
+        self.tabBarController?.tabBar.isHidden = false
     }
     
 }
