@@ -50,6 +50,9 @@ class MemesTableViewController: CoreDataTableViewController {
         cell.labelTop.text = meme.topText
         cell.labelBottom.text = meme.bottomText
         cell.memedImageView.image = meme.getThumbnailImage()
+        // Add a little curvature to the image corners to make a rounded corners
+        cell.memedImageView.layer.cornerRadius = 8.0
+        cell.memedImageView.clipsToBounds = true
         return cell
     }
     
