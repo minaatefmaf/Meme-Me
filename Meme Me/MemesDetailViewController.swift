@@ -12,6 +12,15 @@ class MemesDetailViewController: UIViewController {
     
     var meme: Meme!
     
+    // Use to show/hide the status bar
+    var statusBarIsHidden = false
+    //self.setNeedsStatusBarAppearanceUpdate()
+    
+    override var prefersStatusBarHidden: Bool {
+        // Show/Hide the status bar
+        return statusBarIsHidden
+    }
+    
     @IBOutlet weak var imageView: UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,5 +44,7 @@ class MemesDetailViewController: UIViewController {
     func configureUI() {
         // Hide the tab bar
         self.tabBarController?.tabBar.isHidden = true
+        // Temporarly hide the navigation bar
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
