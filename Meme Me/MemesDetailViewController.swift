@@ -36,5 +36,7 @@ class MemesDetailViewController: UIViewController {
     func configureUI() {
         // Hide the tab bar
         self.tabBarController?.tabBar.isHidden = true
+        // Temporarily hide the navigation bar
+        self.navigationController?.navigationBar.isHidden = true
     }
 }
