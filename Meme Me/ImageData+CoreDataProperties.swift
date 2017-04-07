@@ -18,7 +18,6 @@ extension ImageData {
 
     @NSManaged public var originalImageData: NSData?
     @NSManaged public var memedImageData: NSData?
-    @NSManaged public var thumbnailImageData: NSData?
     @NSManaged public var meme: Meme?
 
 }

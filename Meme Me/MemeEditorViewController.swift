@@ -196,7 +196,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
-        view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first                   responder status)
+        view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first                   responder status
     }
     
     func save() {
@@ -214,9 +214,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         image.originalImage = imagePickerView.image
         let memedImage = generateMemedImage()
         image.memedImage = memedImage
-        image.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
         
         meme.image = image
+        meme.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
         
         // Persisit the meme to the disc
         do {

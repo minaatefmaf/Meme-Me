@@ -18,6 +18,11 @@ public class Meme: NSManagedObject {
         static let BottomText = "bottomText"
     }
     
+    // Auto convertion from UIImage to NSData
+    var thumbnailImage: UIImage! {
+        didSet { thumbnailImageData = UIImagePNGRepresentation(thumbnailImage) as NSData? }
+    }
+    
     // Initialize the class from a dictionary
     convenience init(dictionary: [String: String], context: NSManagedObjectContext) {
         
@@ -35,6 +40,14 @@ public class Meme: NSManagedObject {
             fatalError("Unable to find Entity Name!")
         }
         
+    }
+    
+    // Auto convertion from NSData to UIImage
+    func getThumbnailImage() -> UIImage? {
+        if let thumbnailImageData = thumbnailImageData {
+            return UIImage(data: thumbnailImageData as Data)
+        }
+        return nil
     }
     
 }

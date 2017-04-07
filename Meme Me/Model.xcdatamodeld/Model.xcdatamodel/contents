@@ -3,17 +3,17 @@
     <entity name="ImageData" representedClassName="ImageData" syncable="YES">
         <attribute name="memedImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="originalImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="thumbnailImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="meme" maxCount="1" deletionRule="Nullify" destinationEntity="Meme" inverseName="image" inverseEntity="Meme" syncable="YES"/>
     </entity>
     <entity name="Meme" representedClassName="Meme" syncable="YES">
         <attribute name="bottomText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
+        <attribute name="thumbnailImageData" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="topText" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="image" maxCount="1" deletionRule="Cascade" destinationEntity="ImageData" inverseName="meme" inverseEntity="ImageData" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Meme" positionX="-36" positionY="9" width="128" height="105"/>
-        <element name="ImageData" positionX="-27" positionY="54" width="128" height="105"/>
+        <element name="Meme" positionX="-36" positionY="9" width="128" height="120"/>
+        <element name="ImageData" positionX="-27" positionY="54" width="128" height="90"/>
     </elements>
 </model>

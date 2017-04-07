@@ -25,9 +25,6 @@ public class ImageData: NSManagedObject {
     var memedImage: UIImage! {
         didSet { memedImageData = UIImagePNGRepresentation(memedImage) as NSData? }
     }
-    var thumbnailImage: UIImage! {
-        didSet { thumbnailImageData = UIImagePNGRepresentation(thumbnailImage) as NSData? }
-    }
     
     
     // Initialize the class
@@ -55,12 +52,6 @@ public class ImageData: NSManagedObject {
     func getMemedImage() -> UIImage? {
         if let memedImageData = memedImageData {
             return UIImage(data: memedImageData as Data)
-        }
-        return nil
-    }
-    func getThumbnailImage() -> UIImage? {
-        if let thumbnailImageData = thumbnailImageData {
-            return UIImage(data: thumbnailImageData as Data)
         }
         return nil
     }
