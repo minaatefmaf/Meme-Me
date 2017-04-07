@@ -2,7 +2,7 @@
 //  Meme+CoreDataProperties.swift
 //  Meme Me
 //
-//  Created by Mina Atef on 3/29/17.
+//  Created by Mina Atef on 4/7/17.
 //  Copyright © 2017 minaatefmaf. All rights reserved.
 //
 
@@ -18,7 +18,7 @@ extension Meme {
 
     @NSManaged public var bottomText: String?
     @NSManaged public var topText: String?
-    @NSManaged public var memedImageName: String?
-    @NSManaged public var originalImageName: String?
+    @NSManaged public var createdAt: NSDate?
+    @NSManaged public var image: ImageData?
 
 }

@@ -200,27 +200,23 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func save() {
-        // Create the files names on disc
-        let currentDateTime = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "ddMMyyyy-HHmmss"
-        let originalImageName = formatter.string(from: currentDateTime)
-        let memedImageName = originalImageName + "-meme"
-        
-        // Create the meme fictionary
+        // Create the meme dictionary
         let dictionary: [String : String] = [
             Meme.Keys.TopText: topTextField.text!,
-            Meme.Keys.BottomText: bottomTextField.text!,
-            Meme.Keys.OriginalImageName: originalImageName,
-            Meme.Keys.MemedImageName: memedImageName
+            Meme.Keys.BottomText: bottomTextField.text!
         ]
         
         // Create the meme
         let meme = Meme(dictionary: dictionary, context: coreDataStack.context)
         
         // Save the images to the disc
-        meme.originalImage = imagePickerView.image
-        meme.memedImage = generateMemedImage()
+        let image = ImageData(context: coreDataStack.context)
+        image.originalImage = imagePickerView.image
+        let memedImage = generateMemedImage()
+        image.memedImage = memedImage
+        image.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
+        
+        meme.image = image
         
         // Persisit the meme to the disc
         do {
@@ -248,6 +244,66 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         toolBar.isHidden = false
         
         return memedImage
+    }
+    
+    // MARK: - Creating The Thumbnail Image Helper functions
+    
+    func prepareTheThumbnailImage(image: UIImage) -> UIImage {
+        
+        // Crop the image:
+        let croppedImage = cropToSquareImage(image: image)
+        
+        // Resize the image:
+        let resizedImage = resizeImage(image: croppedImage, scaleX: 0.1, scaleY: 0.1)
+        
+        return resizedImage
+        
+    }
+    
+    func cropToSquareImage(image: UIImage) -> UIImage {
+        
+        let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
+        let contextSize: CGSize = contextImage.size
+        
+        var squareStartingPointX: CGFloat = 0.0
+        var squareStartingPointY: CGFloat = 0.0
+        // Set the square side length to the smaller side of the given rectangle "image"
+        let sideLength = (contextSize.width < contextSize.height) ? contextSize.width : contextSize.height
+        
+        // See what size is longer and create the center off of that
+        if contextSize.width < contextSize.height {
+            squareStartingPointY = (contextSize.height - contextSize.width) / 2
+        } else {
+            squareStartingPointX = (contextSize.width - contextSize.height) / 2
+        }
+        
+        // Create the square
+        let rect: CGRect = CGRect(x: squareStartingPointX, y: squareStartingPointY, width: sideLength, height: sideLength)
+        
+        // Create bitmap image from context using the rect
+        let imageRef: CGImage = contextImage.cgImage!.cropping(to: rect)!
+        // Create a new image based on the imageRef and rotate back to the original orientation
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        
+        return image
+        
+    }
+    
+    func resizeImage(image: UIImage, scaleX: CGFloat, scaleY: CGFloat) -> UIImage {
+        
+        let size = image.size.applying(CGAffineTransform(scaleX: scaleX, y: scaleY))
+        let hasAlpha = false
+        // Automatically use scale factor of main screen
+        let scale: CGFloat = 0.0
+        
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return scaledImage!
+        
     }
     
 }

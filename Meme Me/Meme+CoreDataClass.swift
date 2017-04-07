@@ -16,33 +16,6 @@ public class Meme: NSManagedObject {
         static let EntityName = "Meme"
         static let TopText = "topText"
         static let BottomText = "bottomText"
-        static let OriginalImageName = "originalImageName"
-        static let MemedImageName = "memedImageName"
-    }
-    
-    // Create an image caching instance
-    private let imageCache = ImageCache()
-    
-    // Get the original image
-    var originalImage: UIImage? {
-        get {
-            return imageCache.imageWithIdentifier(originalImageName)
-        }
-        
-        set {
-            imageCache.storeImage(newValue, withIdentifier: originalImageName!)
-        }
-    }
-    
-    // Get the memed image
-    var memedImage: UIImage? {
-        get {
-            return imageCache.imageWithIdentifier(memedImageName)
-        }
-        
-        set {
-            imageCache.storeImage(newValue, withIdentifier: memedImageName!)
-        }
     }
     
     // Initialize the class from a dictionary
@@ -55,8 +28,8 @@ public class Meme: NSManagedObject {
             // Initialize the properties
             self.topText = dictionary[Keys.TopText]
             self.bottomText = dictionary[Keys.BottomText]
-            self.originalImageName = dictionary[Keys.OriginalImageName]
-            self.memedImageName = dictionary[Keys.MemedImageName]
+            self.createdAt = Date() as NSDate?
+            
         } else {
             // Crash if the entity name isn't there
             fatalError("Unable to find Entity Name!")
@@ -64,8 +37,4 @@ public class Meme: NSManagedObject {
         
     }
     
-    public override func prepareForDeletion() {
-        imageCache.deleteImage(withIdentifier: originalImageName!)
-        imageCache.deleteImage(withIdentifier: memedImageName!)
-    }
 }
