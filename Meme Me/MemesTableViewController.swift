@@ -48,8 +48,7 @@ class MemesTableViewController: CoreDataTableViewController {
         // Set the name and image
         cell.labelTop.text = meme.topText
         cell.labelBottom.text = meme.bottomText
-        cell.memedImageView.image = meme.thumbnailImage
-        
+        cell.memedImageView.image = meme.getThumbnailImage()
         return cell
     }
     
