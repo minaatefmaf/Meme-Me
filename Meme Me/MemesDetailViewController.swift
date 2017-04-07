@@ -20,4 +20,21 @@ class MemesDetailViewController: UIViewController {
         self.imageView!.image = meme.image?.getMemedImage()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Add the image
+        self.imageView!.image = meme.image?.getMemedImage()
+        
+        // Configure the UI
+        configureUI()
+    }
+    
+    
+    // MARK: - UI Configurations
+    
+    func configureUI() {
+        // Hide the tab bar
+        self.tabBarController?.tabBar.isHidden = true
+    }
 }
