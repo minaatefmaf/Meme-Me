@@ -254,7 +254,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let croppedImage = cropToSquareImage(image: image)
         
         // Resize the image:
-        let resizedImage = resizeImage(image: croppedImage, scaleX: 0.1, scaleY: 0.1)
+        let resizedImage = resizeImage(image: croppedImage, scaleX: 0.2, scaleY: 0.2)
         
         return resizedImage
         
