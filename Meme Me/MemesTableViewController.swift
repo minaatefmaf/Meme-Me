@@ -20,7 +20,8 @@ class MemesTableViewController: CoreDataTableViewController {
         
         // Create a fetchrequest
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Meme.Keys.EntityName)
-        fetchRequest.sortDescriptors = []
+        // Sort the items by the meme creation date
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                               managedObjectContext: coreDataStack.context,
