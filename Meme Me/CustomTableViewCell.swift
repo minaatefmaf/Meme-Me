@@ -14,6 +14,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var memedImageView: UIImageView!
     @IBOutlet weak var labelTop: UILabel!
     @IBOutlet weak var labelBottom: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     
     override func awakeFromNib() {

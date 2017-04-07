@@ -46,9 +46,17 @@ class MemesTableViewController: CoreDataTableViewController {
         // Create the cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as! CustomTableViewCell
         
-        // Set the name and image
+        // Set the text
         cell.labelTop.text = meme.topText
         cell.labelBottom.text = meme.bottomText
+        
+        // Set the date
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        let dateString = formatter.string(from: meme.createdAt as! Date)
+        cell.dateLabel.text = dateString
+        
+        // Set teh image
         cell.memedImageView.image = meme.getThumbnailImage()
         // Add a little curvature to the image corners to make a rounded corners
         cell.memedImageView.layer.cornerRadius = 8.0
