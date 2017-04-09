@@ -25,15 +25,6 @@ class CoreDataCollectionViewController: UICollectionViewController {
         }
     }
     
-    // MARK: Initializers
-    
-    /*
-     init(fetchedResultsController fetchController: NSFetchedResultsController<NSFetchRequestResult>, style: UITableViewStyle = .plain) {
-     fetchedResultsController = fetchController
-     super.init(style: style)
-     }
-     */
-    
     // This initializer has to be implemented because of the way Swift interfaces with the Objective C protocol NSArchiving.
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -65,35 +56,6 @@ extension CoreDataCollectionViewController {
             return 0
         }
     }
-    
-    /*
-     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-     if let fetchedResultsController = fetchedResultsController {
-     return fetchedResultsController.sections![section].name
-     } else {
-     return nil
-     }
-     }
-     
-     
-     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-     if let fetchedResultsController = fetchedResultsController {
-     return fetchedResultsController.section(forSectionIndexTitle: title, at: index)
-     } else {
-     return 0
-     }
-     }
-     
-     
-     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-     if let fetchedResultsController = fetchedResultsController {
-     return fetchedResultsController.sectionIndexTitles
-     } else {
-     return nil
-     }
-     }
-     */
-    
 }
 
 // MARK: - Fetches
