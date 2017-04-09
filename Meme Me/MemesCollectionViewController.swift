@@ -12,9 +12,7 @@ import CoreData
 class MemesCollectionViewController: CoreDataCollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    
-    var memes: [MemeOld]!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
