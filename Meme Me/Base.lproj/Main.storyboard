@@ -215,17 +215,14 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-2t-Ao0">
                                             <rect key="frame" x="8" y="8" width="104" height="104"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="gNQ-2t-Ao0" secondAttribute="height" multiplier="1:1" id="xV9-Uj-0wZ"/>
-                                            </constraints>
                                         </imageView>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="leadingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="leading" id="0qr-Ik-AeD"/>
-                                    <constraint firstAttribute="topMargin" secondItem="gNQ-2t-Ao0" secondAttribute="top" id="WCB-Hi-9X3"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="gNQ-2t-Ao0" secondAttribute="bottom" id="eeM-bM-Foy"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="trailing" id="hpc-r5-Ubd"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="bottom" secondItem="jaY-Z3-XeR" secondAttribute="bottomMargin" id="Kza-lw-H58"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="trailing" secondItem="jaY-Z3-XeR" secondAttribute="trailingMargin" id="pXc-Sd-gvb"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="leading" secondItem="jaY-Z3-XeR" secondAttribute="leadingMargin" id="tbO-4D-xTF"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="top" secondItem="jaY-Z3-XeR" secondAttribute="topMargin" id="w0V-6d-KP0"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
