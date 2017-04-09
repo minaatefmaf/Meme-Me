@@ -102,7 +102,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMF-ug-utB" id="Cv8-50-wFI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OLk-cH-CaY">
@@ -213,29 +213,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-2t-Ao0">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OFO-8D-CY9">
                                             <rect key="frame" x="8" y="8" width="104" height="104"/>
                                         </imageView>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="leadingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="leading" id="HKB-ZG-C9e"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="trailing" id="ZAY-om-5Fp"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="gNQ-2t-Ao0" secondAttribute="bottom" id="enU-uL-vXS"/>
-                                    <constraint firstAttribute="topMargin" secondItem="gNQ-2t-Ao0" secondAttribute="top" id="nKN-yx-TpH"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="OFO-8D-CY9" secondAttribute="bottom" id="CrH-4b-kB0"/>
+                                    <constraint firstAttribute="topMargin" secondItem="OFO-8D-CY9" secondAttribute="top" id="DDl-eG-KIn"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="OFO-8D-CY9" secondAttribute="trailing" id="gYc-vQ-HbP"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="OFO-8D-CY9" secondAttribute="leading" id="vod-Cw-Zvw"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="gNQ-2t-Ao0"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="gNQ-2t-Ao0"/>
-                                    </mask>
-                                </variation>
                                 <connections>
-                                    <outlet property="memedImageView" destination="gNQ-2t-Ao0" id="ihA-e8-BH3"/>
+                                    <outlet property="memedImageView" destination="OFO-8D-CY9" id="pqw-QT-JqZ"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
