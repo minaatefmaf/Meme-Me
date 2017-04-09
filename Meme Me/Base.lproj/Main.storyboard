@@ -195,7 +195,7 @@
         <scene sceneID="Aiu-sb-fBj">
             <objects>
                 <collectionViewController id="O1X-s7-L3P" customClass="MemesCollectionViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="6zv-Hg-E5R">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6zv-Hg-E5R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -222,10 +222,10 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="trailing" id="Jr2-vx-gV9"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="leading" secondItem="jaY-Z3-XeR" secondAttribute="leadingMargin" id="MI2-U3-PQd"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="gNQ-2t-Ao0" secondAttribute="bottom" id="eN6-dg-BxS"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="top" secondItem="jaY-Z3-XeR" secondAttribute="topMargin" id="g85-Rk-p3J"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="top" secondItem="jaY-Z3-XeR" secondAttribute="topMargin" id="2qg-sl-I0w"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="trailing" secondItem="jaY-Z3-XeR" secondAttribute="trailingMargin" id="BxA-xN-jQD"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="bottom" secondItem="jaY-Z3-XeR" secondAttribute="bottomMargin" id="NAE-Mp-YLk"/>
+                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="leading" secondItem="jaY-Z3-XeR" secondAttribute="leadingMargin" id="nY0-wq-SQy"/>
                                 </constraints>
                                 <size key="customSize" width="120" height="120"/>
                                 <variation key="default">
