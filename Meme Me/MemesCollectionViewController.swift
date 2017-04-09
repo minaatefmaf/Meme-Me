@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import CoreData
 
-class MemesCollectionViewController: UIViewController {
+class MemesCollectionViewController: CoreDataCollectionViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     var memes: [MemeOld]!
@@ -18,36 +18,73 @@ class MemesCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let space:CGFloat = 3.0
+        let space: CGFloat = 0.0
         let dimension = min((view.frame.size.width - (2 * space)) / 3.0,
                             (view.frame.size.height - (2 * space)) / 3.0)
         
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        
+        // Get the core data stack
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let coreDataStack = delegate.coreDataStack
+        
+        // Create a fetchrequest
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Meme.Keys.EntityName)
+        // Sort the items by the meme creation date
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                                              managedObjectContext: coreDataStack.context,
+                                                              sectionNameKeyPath: nil,
+                                                              cacheName: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Retrieve the sent memes.
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        self.memes = appDelegate.memes
+        // Configure the UI
+        configureUI()
         
-        // If the user has no sent memes, the MemeEditor is displayed first.
-        if self.memes.count == 0 {
-            navigateToMemeEditorView()
-        }
-        
-        // Reload the rows and sections of the table view.
-        collectionView.reloadData()
     }
     
     @IBAction func addMeme(_ sender: UIBarButtonItem) {
         // Navigate to the MemeEditor
         navigateToMemeEditorView()
     }
+    
+    
+    // MARK: - UICollectionView Methods
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Get the meme
+        let meme = fetchedResultsController!.object(at: indexPath) as! Meme
+        
+        // Create the cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
+        
+        // Set the image
+        cell.memedImageView.image = meme.getThumbnailImage()
+        // Add a little curvature to the image corners to make a rounded corners
+        cell.memedImageView.layer.cornerRadius = 8.0
+        cell.memedImageView.clipsToBounds = true
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
+        
+        // Set the meme
+        detailController.meme = fetchedResultsController!.object(at: indexPath) as! Meme
+        
+        self.navigationController!.pushViewController(detailController, animated: true)
+        
+    }
+
+    // MARK: - Helper Methods
     
     // Navigate to the MemeEditor when needed
     func navigateToMemeEditorView() {
@@ -57,29 +94,15 @@ class MemesCollectionViewController: UIViewController {
         self.present(controller, animated: true, completion: nil)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.memes.count
-    }
+   
+    // MARK: - UI Configurations
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAtIndexPath indexPath: IndexPath) -> UICollectionViewCell {
+    func configureUI() {
+        // Show the navigation bar
+        navigationController?.navigationBar.isHidden = false
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as! CustomCollectionViewCell
-        
-        // Set the name and image
-        let meme = self.memes[indexPath.row]
-        cell.memedImageView.image = meme.memedImage
-        
-        return cell
+        // Show the tab bar
+        self.tabBarController?.tabBar.isHidden = false
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAtIndexPath indexPath:IndexPath)
-    {
-        
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
-        //detailController.meme = self.memes[indexPath.row]
-        self.navigationController!.pushViewController(detailController, animated: true)
-        
-    }
-
     
 }

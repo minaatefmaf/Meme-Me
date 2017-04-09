@@ -11,21 +11,28 @@ import CoreData
 
 class CoreDataCollectionViewController: UICollectionViewController {
     
+    // Keep the changes; keep track of insertions, deletions, and updates.
+    var insertedIndexPaths: [IndexPath]!
+    var deletedIndexPaths: [IndexPath]!
+    var updatedIndexPaths: [IndexPath]!
+    
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>? {
         didSet {
             // Whenever the fetchedResultsController changes, we execute the search and reload the table
             fetchedResultsController?.delegate = self
             executeSearch()
-            collectionView.reloadData()
+            collectionView!.reloadData()
         }
     }
     
     // MARK: Initializers
     
-    init(fetchedResultsController fetchController: NSFetchedResultsController<NSFetchRequestResult>, style: UITableViewStyle = .plain) {
-        fetchedResultsController = fetchController
-        super.init(style: style)
-    }
+    /*
+     init(fetchedResultsController fetchController: NSFetchedResultsController<NSFetchRequestResult>, style: UITableViewStyle = .plain) {
+     fetchedResultsController = fetchController
+     super.init(style: style)
+     }
+     */
     
     // This initializer has to be implemented because of the way Swift interfaces with the Objective C protocol NSArchiving.
     required init?(coder aDecoder: NSCoder) {
@@ -34,28 +41,24 @@ class CoreDataCollectionViewController: UICollectionViewController {
     
 }
 
-// MARK: - CoreDataTableViewController Method that Subclass Must Implement
+// MARK: - CoreDataCollectionViewController Method that Subclass Must Implement
 
 extension CoreDataCollectionViewController {
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        fatalError("This method MUST be implemented by a subclass of CoreDataTableViewController")
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        fatalError("This method MUST be implemented by a subclass of CoreDataCollectionViewController")
     }
 }
 
-// MARK: - Table Data Source Methods
+// MARK: - Collection Data Source Methods
 
 extension CoreDataCollectionViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        if let fetchedResultsController = fetchedResultsController {
-            return (fetchedResultsController.sections?.count)!
-        } else {
-            return 0
-        }
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return self.fetchedResultsController!.sections?.count ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let fetchedResultsController = fetchedResultsController {
             return fetchedResultsController.sections![section].numberOfObjects
         } else {
@@ -63,29 +66,34 @@ extension CoreDataCollectionViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let fetchedResultsController = fetchedResultsController {
-            return fetchedResultsController.sections![section].name
-        } else {
-            return nil
-        }
-    }
+    /*
+     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+     if let fetchedResultsController = fetchedResultsController {
+     return fetchedResultsController.sections![section].name
+     } else {
+     return nil
+     }
+     }
+     
+     
+     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+     if let fetchedResultsController = fetchedResultsController {
+     return fetchedResultsController.section(forSectionIndexTitle: title, at: index)
+     } else {
+     return 0
+     }
+     }
+     
+     
+     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+     if let fetchedResultsController = fetchedResultsController {
+     return fetchedResultsController.sectionIndexTitles
+     } else {
+     return nil
+     }
+     }
+     */
     
-    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        if let fetchedResultsController = fetchedResultsController {
-            return fetchedResultsController.section(forSectionIndexTitle: title, at: index)
-        } else {
-            return 0
-        }
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if let fetchedResultsController = fetchedResultsController {
-            return fetchedResultsController.sectionIndexTitles
-        } else {
-            return nil
-        }
-    }
 }
 
 // MARK: - Fetches
@@ -107,42 +115,58 @@ extension CoreDataCollectionViewController {
 
 extension CoreDataCollectionViewController: NSFetchedResultsControllerDelegate {
     
+    // Whenever changes are made to Core Data the following three methods are invoked. This first method is used to create three fresh arrays to record the index paths that will be changed.
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.beginUpdates()
+        // We are about to handle some new changes. Start out with empty arrays for each change type
+        insertedIndexPaths = [IndexPath]()
+        deletedIndexPaths = [IndexPath]()
+        updatedIndexPaths = [IndexPath]()
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    // The second method may be called multiple times, once for each Photo object that is added, deleted, or changed.
+    // We store the index paths into the three arrays.
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        let set = IndexSet(integer: sectionIndex)
-        
-        switch (type) {
+        switch type{
+            
         case .insert:
-            tableView.insertSections(set, with: .fade)
+            // Here we are noting that a new Photo instance has been added to Core Data. We remember its index path so that we can add a cell in "controllerDidChangeContent". Note that the "newIndexPath" parameter has the index path that we want in this case.
+            insertedIndexPaths.append(newIndexPath!)
+            break
         case .delete:
-            tableView.deleteSections(set, with: .fade)
-        default:
-            // irrelevant in our case
+            // Here we are noting that a Photo instance has been deleted from Core Data. We keep remember its index path so that we can remove the corresponding cell in "controllerDidChangeContent". The "indexPath" parameter has value that we want in this case.
+            deletedIndexPaths.append(indexPath!)
+            break
+        case .update:
+            // Use this to update the photos when downloaded.
+            updatedIndexPaths.append(indexPath!)
+            break
+        case .move:
+            // Do nothing
             break
         }
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        switch(type) {
-        case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
-        case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
-        case .update:
-            tableView.reloadRows(at: [indexPath!], with: .fade)
-        case .move:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
-        }
-    }
-    
+    // This method is invoked after all of the changed in the current batch have been collected into the three index path arrays (insert, delete, and upate). We now need to loop through the arrays and perform the changes.
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.endUpdates()
+        
+        collectionView!.performBatchUpdates({() -> Void in
+            
+            for indexPath in self.insertedIndexPaths {
+                self.collectionView!.insertItems(at: [indexPath])
+            }
+            
+            for indexPath in self.deletedIndexPaths {
+                self.collectionView!.deleteItems(at: [indexPath])
+            }
+            
+            for indexPath in self.updatedIndexPaths {
+                self.collectionView!.reloadItems(at: [indexPath])
+            }
+            
+        }, completion: nil)
     }
+
+    
 }
 

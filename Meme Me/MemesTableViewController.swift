@@ -63,7 +63,7 @@ class MemesTableViewController: CoreDataTableViewController {
         let dateString = formatter.string(from: meme.createdAt as! Date)
         cell.dateLabel.text = dateString
         
-        // Set teh image
+        // Set the image
         cell.memedImageView.image = meme.getThumbnailImage()
         // Add a little curvature to the image corners to make a rounded corners
         cell.memedImageView.layer.cornerRadius = 8.0
@@ -90,6 +90,7 @@ class MemesTableViewController: CoreDataTableViewController {
         
         self.present(controller, animated: true, completion: nil)
     }
+    
     
     // MARK: - UI Configurations
     
