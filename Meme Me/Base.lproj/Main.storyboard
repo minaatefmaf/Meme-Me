@@ -219,10 +219,10 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="bottom" secondItem="jaY-Z3-XeR" secondAttribute="bottomMargin" id="Kza-lw-H58"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="trailing" secondItem="jaY-Z3-XeR" secondAttribute="trailingMargin" id="pXc-Sd-gvb"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="leading" secondItem="jaY-Z3-XeR" secondAttribute="leadingMargin" id="tbO-4D-xTF"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="top" secondItem="jaY-Z3-XeR" secondAttribute="topMargin" id="w0V-6d-KP0"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="leading" id="HKB-ZG-C9e"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="trailing" id="ZAY-om-5Fp"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="gNQ-2t-Ao0" secondAttribute="bottom" id="enU-uL-vXS"/>
+                                    <constraint firstAttribute="topMargin" secondItem="gNQ-2t-Ao0" secondAttribute="top" id="nKN-yx-TpH"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
