@@ -199,7 +199,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pog-SN-1mg">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="pog-SN-1mg">
                             <size key="itemSize" width="120" height="120"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -222,12 +222,11 @@
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="top" secondItem="jaY-Z3-XeR" secondAttribute="topMargin" id="2qg-sl-I0w"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="trailing" secondItem="jaY-Z3-XeR" secondAttribute="trailingMargin" id="BxA-xN-jQD"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="bottom" secondItem="jaY-Z3-XeR" secondAttribute="bottomMargin" id="NAE-Mp-YLk"/>
-                                    <constraint firstItem="gNQ-2t-Ao0" firstAttribute="leading" secondItem="jaY-Z3-XeR" secondAttribute="leadingMargin" id="nY0-wq-SQy"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="leading" id="7MO-H2-huM"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="gNQ-2t-Ao0" secondAttribute="bottom" id="ETG-Ez-OOq"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="gNQ-2t-Ao0" secondAttribute="trailing" id="GQR-Hy-kfm"/>
+                                    <constraint firstAttribute="topMargin" secondItem="gNQ-2t-Ao0" secondAttribute="top" id="Sc7-sp-EUv"/>
                                 </constraints>
-                                <size key="customSize" width="120" height="120"/>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="gNQ-2t-Ao0"/>
