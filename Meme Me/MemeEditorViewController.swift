@@ -219,12 +219,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         meme.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
         
         // Persisit the meme to the disc
-        do {
-            try coreDataStack.saveContext()
-        } catch {
-            print("Error while saving.")
-        }
-        
+        coreDataStack.save()        
     }
     
     func generateMemedImage() -> UIImage {

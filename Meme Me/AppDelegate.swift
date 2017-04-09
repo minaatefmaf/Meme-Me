@@ -30,13 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         
         /*
-         // Persisit the memes to the disc
-         do {
-         try coreDataStack.saveContext()
-         } catch {
-         print("Error while saving.")
-         }
-         */
+        // Persisit the memes to the disc
+        coreDataStack.save()
+        */
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -45,13 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /*
          // Persisit the memes to the disc
-         do {
-         try coreDataStack.saveContext()
-         } catch {
-         print("Error while saving.")
-         }
+         coreDataStack.save()
          */
-        
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
