@@ -27,7 +27,7 @@ class MemesTableViewController: CoreDataTableViewController {
         
         // Add the right bar buttons
         addNewMemeButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(MemesTableViewController.navigateToMemeEditorView))
-        editTableItemsButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(MemesTableViewController.navigateToMemeEditorView))
+        editTableItemsButton = self.editButtonItem // Returns a bar button item that toggles its title and associated state between Edit and Done
         self.navigationItem.setRightBarButtonItems([addNewMemeButton, editTableItemsButton], animated: false)
         
         // Create a fetchrequest
@@ -39,6 +39,7 @@ class MemesTableViewController: CoreDataTableViewController {
                                                               managedObjectContext: coreDataStack.context,
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
+        
         
     }
     
@@ -114,7 +115,6 @@ class MemesTableViewController: CoreDataTableViewController {
         
         self.present(controller, animated: true, completion: nil)
     }
-    
     
     // MARK: - UI Configurations
     
