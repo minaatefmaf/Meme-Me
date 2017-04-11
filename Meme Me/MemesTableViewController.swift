@@ -88,7 +88,7 @@ class MemesTableViewController: CoreDataTableViewController {
                 context.delete(memeToBeDeleted)
             }
             
-            // Save the context
+            // Persist the context to the disk
             coreDataStack.save()
             
         default:

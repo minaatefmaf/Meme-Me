@@ -17,6 +17,10 @@ class MemesDetailViewController: UIViewController {
     // Use to show/hide the status bar
     var statusBarIsHidden = false
     
+    // Set the core data stack variable
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    var coreDataStack: CoreDataStack!
+    
     override var prefersStatusBarHidden: Bool {
         // Show/Hide the status bar
         return statusBarIsHidden
@@ -35,6 +39,9 @@ class MemesDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Get the core data stack
+        coreDataStack = delegate.coreDataStack
         
         // Add the image
         self.imageView!.image = meme.image?.getMemedImage()
@@ -66,6 +73,16 @@ class MemesDetailViewController: UIViewController {
         } else {
             view.backgroundColor = .white
         }
+    }
+    
+    private func deleteTheMeme() {
+        coreDataStack.context.delete(meme)
+
+        // Persist the context to the disk
+        coreDataStack.save()
+        
+        // Return back to the table/collection view controller
+        self.navigationController!.popViewController(animated: true)
     }
     
     
