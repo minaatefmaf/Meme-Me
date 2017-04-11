@@ -11,12 +11,21 @@ import CoreData
 
 class MemesTableViewController: CoreDataTableViewController {
     
+    // The right bar buttons
+    private var addNewMemeButton: UIBarButtonItem!
+    private var editTableItemsButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the core data stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let coreDataStack = delegate.coreDataStack
+        
+        // Add the right bar buttons
+        addNewMemeButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(MemesTableViewController.navigateToMemeEditorView))
+        editTableItemsButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(MemesTableViewController.navigateToMemeEditorView))
+        self.navigationItem.setRightBarButtonItems([addNewMemeButton, editTableItemsButton], animated: false)
         
         // Create a fetchrequest
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Meme.Keys.EntityName)
@@ -35,11 +44,6 @@ class MemesTableViewController: CoreDataTableViewController {
         
         // Configure the UI
         configureUI()
-    }
-    
-    @IBAction func addMeme(_ sender: UIBarButtonItem) {
-        // Navigate to the MemeEditor
-        navigateToMemeEditorView()
     }
     
     
@@ -71,6 +75,8 @@ class MemesTableViewController: CoreDataTableViewController {
         return cell
     }
     
+    editings
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
         
@@ -90,6 +96,8 @@ class MemesTableViewController: CoreDataTableViewController {
         
         self.present(controller, animated: true, completion: nil)
     }
+    
+    func
     
     
     // MARK: - UI Configurations
