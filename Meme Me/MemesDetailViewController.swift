@@ -67,6 +67,13 @@ class MemesDetailViewController: UIViewController {
         view.removeGestureRecognizer(tapRecognizer!)
     }
     
+    @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
+        // Define an instance of the ActivityViewController
+        let activityController = UIActivityViewController(activityItems: [self.imageView!.image as Any], applicationActivities: nil)
+        // Present the ActivityViewController
+        self.present(activityController, animated: true, completion: nil)
+    }
+    
     // MARK: - Tab Recognizer Methods
     
     func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
@@ -95,7 +102,7 @@ class MemesDetailViewController: UIViewController {
     
     private func deleteTheMeme() {
         coreDataStack.context.delete(meme)
-
+        
         // Persist the context to the disk
         coreDataStack.save()
         
