@@ -14,7 +14,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -50,8 +50,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         topTextField.textAlignment = NSTextAlignment.center
         bottomTextField.textAlignment = NSTextAlignment.center
         
-        // Disable the share button initially.
-        shareButton.isEnabled = false
+        // Disable the save button initially.
+        saveButton.isEnabled = false
         
         // Assign each textfield to its proper delegate
         topTextField.delegate = memeTopTextFieldDelegate
@@ -93,35 +93,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return true
     }
     
-    @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
-        // Generate a memed image
-        let memedImage = generateMemedImage()
-        // Define an instance of the ActivityViewController
-        let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        // Present the ActivityViewController
-        self.present(activityController, animated: true, completion: nil)
+    @IBAction func saveMemedImage(_ sender: UIBarButtonItem) {
+        // Save the meme
+        self.save()
         
-        // Save the meme & dismiss the ActivityViewController once it has done its work.
-        activityController.completionWithItemsHandler  = {
-            activityType, completed, returnedItems, activityError in
-            if completed {
-                self.save()
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
+        // Navigate back to the table/collection view
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func cancelMemeEditor(_ sender: UIBarButtonItem) {
-        // Navigate to the tab bar (SentMemes)
-        navigateToTheTabBarController()
-    }
-    
-    // Navigate to the tab bar (SentMemes) when needed
-    func navigateToTheTabBarController() {
-        var controller: UITabBarController
-        controller = self.storyboard?.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        
-        self.present(controller, animated: true, completion: nil)
+        // Navigate back to the table/collection view
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
@@ -145,8 +128,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imagePickerView.image = image
-            // Enable the share button when an image has been chosen.
-            shareButton.isEnabled = true
+            // Enable the save button when an image has been chosen.
+            saveButton.isEnabled = true
         }
         self.dismiss(animated: true, completion: nil)
     }
