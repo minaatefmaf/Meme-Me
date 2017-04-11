@@ -15,12 +15,15 @@ class MemesTableViewController: CoreDataTableViewController {
     private var addNewMemeButton: UIBarButtonItem!
     private var editTableItemsButton: UIBarButtonItem!
     
+    // Set the core data stack variable
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    var coreDataStack: CoreDataStack!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the core data stack
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let coreDataStack = delegate.coreDataStack
+        coreDataStack = delegate.coreDataStack
         
         // Add the right bar buttons
         addNewMemeButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(MemesTableViewController.navigateToMemeEditorView))
@@ -75,8 +78,23 @@ class MemesTableViewController: CoreDataTableViewController {
         return cell
     }
     
-    editings
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        switch (editingStyle) {
+        case .delete:
+            if let context = fetchedResultsController?.managedObjectContext,
+                let memeToBeDeleted = fetchedResultsController?.object(at: indexPath as IndexPath) as? Meme {
+                context.delete(memeToBeDeleted)
+            }
+            
+            // Save the context
+            coreDataStack.save()
+            
+        default:
+            break
+        }
+    }
+        
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemesDetailViewController") as! MemesDetailViewController
         
@@ -96,8 +114,6 @@ class MemesTableViewController: CoreDataTableViewController {
         
         self.present(controller, animated: true, completion: nil)
     }
-    
-    func
     
     
     // MARK: - UI Configurations
