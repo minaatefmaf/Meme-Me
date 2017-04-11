@@ -301,14 +301,14 @@
                                 <rect key="frame" x="-4" y="0.0" width="383" height="44"/>
                                 <items>
                                     <navigationItem id="lSw-C1-ujq">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="save" id="gC0-tV-g9X" userLabel="Save Button">
-                                            <connections>
-                                                <action selector="saveMemedImage:" destination="vXZ-lx-hvc" id="cME-Be-eH3"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="gnW-gF-EVV">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gnW-gF-EVV">
                                             <connections>
                                                 <action selector="cancelMemeEditor:" destination="vXZ-lx-hvc" id="Eev-3u-kO5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="gC0-tV-g9X" userLabel="Save Button">
+                                            <connections>
+                                                <action selector="saveMemedImage:" destination="vXZ-lx-hvc" id="cME-Be-eH3"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
