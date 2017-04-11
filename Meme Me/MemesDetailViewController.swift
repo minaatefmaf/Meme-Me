@@ -10,6 +10,9 @@ import UIKit
 
 class MemesDetailViewController: UIViewController {
     
+    @IBOutlet weak var buttomToolbar: UIToolbar!
+    @IBOutlet weak var imageView: UIImageView!
+    
     var meme: Meme!
     
     private var tapRecognizer: UITapGestureRecognizer? = nil
@@ -26,7 +29,14 @@ class MemesDetailViewController: UIViewController {
         return statusBarIsHidden
     }
     
-    @IBOutlet weak var imageView: UIImageView!
+    // To hold the mode of the view (whether the statusbar and the toolbars are visible or not)
+    private enum ViewMode {
+        case visibleViews
+        case hiddenViews
+    }
+    
+    // Initialize the viewState to all views visible
+    private var viewState = ViewMode.visibleViews
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,8 +74,16 @@ class MemesDetailViewController: UIViewController {
         statusBarIsHidden = !statusBarIsHidden
         setNeedsStatusBarAppearanceUpdate()
         
-        // Toggle the navigation bar
-        navigationController?.navigationBar.isHidden = !(navigationController?.navigationBar.isHidden ?? false)
+        // Toggle the navigation bar and the buttom toolbar
+        if viewState == .visibleViews {
+            viewState = .hiddenViews
+            navigationController?.navigationBar.isHidden = true
+            buttomToolbar.isHidden = true
+        } else {
+            viewState = .visibleViews
+            navigationController?.navigationBar.isHidden = false
+            buttomToolbar.isHidden = false
+        }
         
         // Toggle the view's background color
         if view.backgroundColor == .white {
