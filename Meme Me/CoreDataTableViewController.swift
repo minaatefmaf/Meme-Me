@@ -31,7 +31,7 @@ class CoreDataTableViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
 }
 
 // MARK: - CoreDataTableViewController Method that Subclass Must Implement
@@ -47,14 +47,6 @@ extension CoreDataTableViewController {
 
 extension CoreDataTableViewController {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        if let fetchedResultsController = fetchedResultsController {
-            return (fetchedResultsController.sections?.count)!
-        } else {
-            return 0
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let fetchedResultsController = fetchedResultsController {
             return fetchedResultsController.sections![section].numberOfObjects
@@ -63,29 +55,6 @@ extension CoreDataTableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let fetchedResultsController = fetchedResultsController {
-            return fetchedResultsController.sections![section].name
-        } else {
-            return nil
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        if let fetchedResultsController = fetchedResultsController {
-            return fetchedResultsController.section(forSectionIndexTitle: title, at: index)
-        } else {
-            return 0
-        }
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        if let fetchedResultsController = fetchedResultsController {
-            return fetchedResultsController.sectionIndexTitles
-        } else {
-            return nil
-        }
-    }
 }
 
 // MARK: - Fetches

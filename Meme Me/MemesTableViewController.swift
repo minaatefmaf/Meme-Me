@@ -40,11 +40,13 @@ class MemesTableViewController: CoreDataTableViewController {
                                                               sectionNameKeyPath: nil,
                                                               cacheName: nil)
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Switch to the meme creation scene if the table is empty
+        switchToMemeCreationIfEmptyResults()
         
         // Configure the UI
         configureUI()
@@ -91,6 +93,9 @@ class MemesTableViewController: CoreDataTableViewController {
             // Persist the context to the disk
             coreDataStack.save()
             
+            // Switch to the meme creation scene if the table is empty
+            switchToMemeCreationIfEmptyResults()
+            
         default:
             break
         }
@@ -115,6 +120,14 @@ class MemesTableViewController: CoreDataTableViewController {
         
         self.present(controller, animated: true, completion: nil)
     }
+    
+    func switchToMemeCreationIfEmptyResults() {
+        // If there are no results for the fetch, navigate to the meme creation scene
+        if fetchedResultsController?.sections![0].numberOfObjects == 0 {
+            navigateToMemeEditorView()
+        }
+    }
+    
     
     // MARK: - UI Configurations
     
