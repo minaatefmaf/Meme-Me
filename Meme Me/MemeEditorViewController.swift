@@ -112,7 +112,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Make sure the app has the permission to open the camera
         let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         guard status == .authorized else {
-            showAlertAndRedirectToSettings()
+            showAlertAndRedirectToSettings(alertTitle: Alerts.CameraDisabledTitle, alertMessage: Alerts.CameraDisabledMessage)
             return
         }
         
@@ -123,7 +123,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Make sure the app has the permission to access the photo library
         let status = PHPhotoLibrary.authorizationStatus()
         guard status == .authorized else {
-            showAlertAndRedirectToSettings()
+            showAlertAndRedirectToSettings(alertTitle: Alerts.PhotosDisabledTitle, alertMessage: Alerts.PhotosDisabledMessage)
             return
         }
         
@@ -300,14 +300,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // MARK: - General Helper Methods
-    private func showAlertAndRedirectToSettings() {
-        let alert = UIAlertController(title: "Access Disabled", message: "Access Disapled Message", preferredStyle: .alert)
+    private func showAlertAndRedirectToSettings(alertTitle title: String, alertMessage message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let confirmAction = UIAlertAction(title: "Open Settings", style: .default) { action in
+        let confirmAction = UIAlertAction(title: Alerts.GoToSettings, style: .default) { action in
             // Redirect the user to the app's settings in the general seeting app
             UIApplication.shared.openURL(NSURL(string:UIApplicationOpenSettingsURLString)! as URL)
         }
-        let cancelAction = UIAlertAction(title: "Not Now", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: Alerts.AskLater, style: .default, handler: nil)
         
         alert.addAction(cancelAction)
         alert.addAction(confirmAction)
