@@ -48,6 +48,9 @@ class MemesTableViewController: CoreDataTableViewController {
         // Switch to the meme creation scene if the table is empty
         switchToMemeCreationIfEmptyResults()
         
+        // Save the current tab index to the user defaults
+        saveRootTabReference(currentTabIndex: 0)
+        
         // Configure the UI
         configureUI()
     }
@@ -128,6 +131,10 @@ class MemesTableViewController: CoreDataTableViewController {
         }
     }
     
+    func saveRootTabReference(currentTabIndex: Int) {
+        let defaults = UserDefaults.standard
+        defaults.set(currentTabIndex, forKey: "rootTabReference")
+    }
     
     // MARK: - UI Configurations
     

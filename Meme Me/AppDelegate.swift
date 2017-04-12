@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Set the initial tab bar view
+        setInitialTabBarView()
+
         /*
          // Start Autosaving (every 1 minute)
          coreDataStack.autoSave(60)
@@ -57,6 +60,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // MARK: - Getting The Initial View Controller Helper Methods
+    
+    func setInitialTabBarView() {
+        // Get a reference to the root tab bar controller
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarControllerID") as! UITabBarController
+        self.window?.rootViewController = initialViewController
+        let tababarController = self.window!.rootViewController as! UITabBarController
+        
+        // Remember the last tab the user was using
+        let defaults = UserDefaults.standard
+        let rootTabReference = defaults.integer(forKey: "rootTabReference")
+        
+        // Start with that tab view
+        tababarController.selectedIndex = rootTabReference
+        
+        self.window?.makeKeyAndVisible()
+    }
     
 }
 

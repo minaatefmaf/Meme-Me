@@ -47,6 +47,9 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
         // Switch to the meme creation scene if the table is empty
         switchToMemeCreationIfEmptyResults()
         
+        // Save the current tab index to the user defaults
+        saveRootTabReference(currentTabIndex: 1)
+        
         // Configure the UI
         configureUI()
         
@@ -100,6 +103,11 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
         if fetchedResultsController?.sections![0].numberOfObjects == 0 {
             navigateToMemeEditorView()
         }
+    }
+    
+    func saveRootTabReference(currentTabIndex: Int) {
+        let defaults = UserDefaults.standard
+        defaults.set(currentTabIndex, forKey: "rootTabReference")
     }
     
    
