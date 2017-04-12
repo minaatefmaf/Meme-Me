@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -118,6 +119,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // A general function to pick an image from a given source.
     // Its soul purpose is to serve the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
     func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
+        // Make sure the app has the permission to access the photo library
+        let status = PHPhotoLibrary.authorizationStatus()
+        guard status == .authorized else {
+            showAlertAndRedirectToSettings()
+            return
+        }
+        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = sourceType
@@ -282,6 +290,22 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         return scaledImage!
         
+    }
+    
+    // MARK: - General Helper Methods
+    private func showAlertAndRedirectToSettings() {
+        let alert = UIAlertController(title: "Access Disabled", message: "Access Disapled Message", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Open Settings", style: .default) { action in
+            // Redirect the user to the app's settings in the general seeting app
+            UIApplication.shared.openURL(NSURL(string:UIApplicationOpenSettingsURLString)! as URL)
+        }
+        let cancelAction = UIAlertAction(title: "Not Now", style: .default, handler: nil)
+        
+        alert.addAction(cancelAction)
+        alert.addAction(confirmAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
