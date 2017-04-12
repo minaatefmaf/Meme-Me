@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the initial tab bar view
         setInitialTabBarView()
 
+        // If this is the first time the user launches the app, ask for the required permissions
+        initializeTheAppForFirstLaunch()
+        
         /*
          // Start Autosaving (every 1 minute)
          coreDataStack.autoSave(60)
@@ -28,37 +31,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        
-        /*
-        // Persisit the memes to the disc
-        coreDataStack.save()
-        */
+    private func initializeTheAppForFirstLaunch() {
+        if UserDefaults.standard.bool(forKey: "HasLaunchedBefore") {
+            // The app has launched before -> Do nothing
+        } else {
+            // This is the first launch ever, ask for the required permssions
+            AppPermissions.askUserPermissionForThePhotoLibrary()
+            AppPermissions.askUserPermissionForCamera()
+            
+            // Set "HasLaunchedBefore" to true
+            UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
+            UserDefaults.standard.synchronize()
+        }
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        /*
-         // Persisit the memes to the disc
-         coreDataStack.save()
-         */
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
     
     // MARK: - Getting The Initial View Controller Helper Methods
     
