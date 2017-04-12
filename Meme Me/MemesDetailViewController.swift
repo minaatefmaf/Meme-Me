@@ -15,6 +15,9 @@ class MemesDetailViewController: UIViewController {
     
     var meme: Meme!
     
+    // The right bar button
+    private var addNewMemeButton: UIBarButtonItem!
+    
     private var tapRecognizer: UITapGestureRecognizer? = nil
     
     // Use to show/hide the status bar
@@ -52,6 +55,10 @@ class MemesDetailViewController: UIViewController {
         
         // Get the core data stack
         coreDataStack = delegate.coreDataStack
+        
+        // Add the right bar button
+        addNewMemeButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(MemesDetailViewController.navigateToMemeEditorView))
+        self.navigationItem.setRightBarButtonItems([addNewMemeButton], animated: false)
         
         // Add the image
         self.imageView!.image = meme.image?.getMemedImage()
@@ -113,6 +120,19 @@ class MemesDetailViewController: UIViewController {
         } else {
             view.backgroundColor = .white
         }
+    }
+    
+    // MARK: - Helper Methods
+    
+    // Navigate to the MemeEditor when needed
+    func navigateToMemeEditorView() {
+        var controller: MemeEditorViewController
+        controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+        
+        // Send the meme
+        controller.oldMeme = self.meme
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
     private func deleteTheMeme() {
