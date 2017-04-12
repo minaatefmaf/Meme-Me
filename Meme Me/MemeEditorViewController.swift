@@ -69,7 +69,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // Initialize the meme data if the scene is initiated to edit an old meme
         if let oldMeme = self.oldMeme {
-            imagePickerView.image = oldMeme.image!.originalImage
+            imagePickerView.image = oldMeme.image!.getOriginalImage()
             topTextField.text = oldMeme.topText
             bottomTextField.text = oldMeme.bottomText
         }
