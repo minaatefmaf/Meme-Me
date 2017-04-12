@@ -106,18 +106,42 @@
 		2E4B7E431E8B5BDD000BD182 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2EB266BC1E9DD69A00162B18 /* Meme Creation/Viewer */,
+				2EB266BD1E9DD6B600162B18 /* Table Bar View */,
+				2EB266BE1E9DD6CC00162B18 /* Collection Bar View */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2EB266BC1E9DD69A00162B18 /* Meme Creation/Viewer */ = {
+			isa = PBXGroup;
+			children = (
 				2ECC53701B0CC318007FCAF7 /* MemeEditorViewController.swift */,
 				2E5817CB1B133DB600EF785E /* MemeTextFieldDelegate.swift */,
 				2ECD19F91B13623600938908 /* DefaultTextAttributes.swift */,
+				2ECEDAC91B13DF7A00D6FB36 /* MemesDetailViewController.swift */,
+			);
+			name = "Meme Creation/Viewer";
+			sourceTree = "<group>";
+		};
+		2EB266BD1E9DD6B600162B18 /* Table Bar View */ = {
+			isa = PBXGroup;
+			children = (
 				2E4B7E411E8B485F000BD182 /* CoreDataTableViewController.swift */,
 				2ECEDABF1B13947200D6FB36 /* MemesTableViewController.swift */,
+				2E1A96C01B13F74000474E17 /* CustomTableViewCell.swift */,
+			);
+			name = "Table Bar View";
+			sourceTree = "<group>";
+		};
+		2EB266BE1E9DD6CC00162B18 /* Collection Bar View */ = {
+			isa = PBXGroup;
+			children = (
 				2ECC29041E9A774C00004B37 /* CoreDataCollectionViewController.swift */,
 				2ECEDAC11B13948100D6FB36 /* MemesCollectionViewController.swift */,
-				2ECEDAC91B13DF7A00D6FB36 /* MemesDetailViewController.swift */,
-				2E1A96C01B13F74000474E17 /* CustomTableViewCell.swift */,
 				2E1A96C41B140DA200474E17 /* CustomCollectionViewCell.swift */,
 			);
-			name = Controller;
+			name = "Collection Bar View";
 			sourceTree = "<group>";
 		};
 		2ECC53601B0CC318007FCAF7 = {
