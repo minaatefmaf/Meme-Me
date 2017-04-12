@@ -44,6 +44,9 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Switch to the meme creation scene if the table is empty
+        switchToMemeCreationIfEmptyResults()
+        
         // Configure the UI
         configureUI()
         
@@ -90,6 +93,13 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
         controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func switchToMemeCreationIfEmptyResults() {
+        // If there are no results for the fetch, navigate to the meme creation scene
+        if fetchedResultsController?.sections![0].numberOfObjects == 0 {
+            navigateToMemeEditorView()
+        }
     }
     
    
