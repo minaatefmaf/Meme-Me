@@ -109,16 +109,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
+        // Make sure the app has the permission to open the camera
+        let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        guard status == .authorized else {
+            showAlertAndRedirectToSettings()
+            return
+        }
+        
         pickAnImage(UIImagePickerControllerSourceType.camera)
     }
     
     @IBAction func pickAnImageFromAlbum(_ sender: UIBarButtonItem) {
-        pickAnImage(UIImagePickerControllerSourceType.photoLibrary)
-    }
-    
-    // A general function to pick an image from a given source.
-    // Its soul purpose is to serve the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
-    func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
         // Make sure the app has the permission to access the photo library
         let status = PHPhotoLibrary.authorizationStatus()
         guard status == .authorized else {
@@ -126,6 +127,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             return
         }
         
+        pickAnImage(UIImagePickerControllerSourceType.photoLibrary)
+    }
+    
+    // A general function to pick an image from a given source.
+    // Its soul purpose is to serve the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
+    func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = sourceType
