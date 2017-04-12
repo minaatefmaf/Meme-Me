@@ -9,6 +9,10 @@
 import UIKit
 import Photos
 
+protocol MemeEditorViewControllerDelegate {
+    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeeIsEdited: Bool)
+}
+
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imagePickerView: UIImageView!
@@ -30,14 +34,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
     // Set the core data stack variable
-    let delegate = UIApplication.shared.delegate as! AppDelegate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var coreDataStack: CoreDataStack!
+    
+    // For holding the old meme if the scene is initiated to edit an old meme
+    var oldMeme: Meme?
+    
+    var memeEditorDelegate: MemeEditorViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the core data stack
-        coreDataStack = delegate.coreDataStack
+        coreDataStack = appDelegate.coreDataStack
         
         // Assign our defult text attributes to the textfields
         topTextField.defaultTextAttributes = memeTextAttributes
@@ -57,6 +66,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Assign each textfield to its proper delegate
         topTextField.delegate = memeTopTextFieldDelegate
         bottomTextField.delegate = memeBottomTextFieldDelegate
+        
+        // Initialize the meme data if the scene is initiated to edit an old meme
+        if let oldMeme = self.oldMeme {
+            imagePickerView.image = oldMeme.image!.originalImage
+            topTextField.text = oldMeme.topText
+            bottomTextField.text = oldMeme.bottomText
+        }
         
         // Initialize and configure the tap recognizer
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
@@ -97,6 +113,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func saveMemedImage(_ sender: UIBarButtonItem) {
         // Save the meme
         self.save()
+        
+        // Return back that the image has been edited (if the scene was initiated to edit an old meme)
+        memeEditorDelegate?.editTheMeme(MemeEditor: self, didEditMeme: true)
         
         // Navigate back to the table/collection view
         self.dismiss(animated: true, completion: nil)
