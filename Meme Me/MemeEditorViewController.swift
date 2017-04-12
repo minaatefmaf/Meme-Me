@@ -72,6 +72,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             imagePickerView.image = oldMeme.image!.getOriginalImage()
             topTextField.text = oldMeme.topText
             bottomTextField.text = oldMeme.bottomText
+            
+            // Enable the save button
+            saveButton.isEnabled = true
         }
         
         // Initialize and configure the tap recognizer
@@ -111,11 +114,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func saveMemedImage(_ sender: UIBarButtonItem) {
-        // Save the meme
-        self.save()
-        
         // Return back that the image has been edited (if the scene was initiated to edit an old meme)
-        memeEditorDelegate?.editTheMeme(MemeEditor: self, didEditMeme: true)
+        if let memeEditorDelegate = memeEditorDelegate {
+            memeEditorDelegate.editTheMeme(MemeEditor: self, didEditMeme: true)
+            
+            // Save the meme
+            self.modifyOldMeme()
+        } else {
+            // Save the meme
+            self.saveNewMeme()
+        }
+        
         
         // Navigate back to the table/collection view
         self.dismiss(animated: true, completion: nil)
@@ -216,7 +225,25 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first                   responder status
     }
     
-    func save() {
+    func modifyOldMeme() {
+        // Save the text
+        oldMeme?.topText = topTextField.text
+        oldMeme?.bottomText = bottomTextField.text
+        
+        // Save the images to the disc
+        let image = ImageData(context: coreDataStack.context)
+        image.originalImage = imagePickerView.image
+        let memedImage = generateMemedImage()
+        image.memedImage = memedImage
+        
+        oldMeme?.image = image
+        oldMeme?.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
+        
+        // Persisit the meme to the disc
+        coreDataStack.save()
+    }
+    
+    func saveNewMeme() {
         // Create the meme dictionary
         let dictionary: [String : String] = [
             Meme.Keys.TopText: topTextField.text!,
