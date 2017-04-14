@@ -37,6 +37,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var coreDataStack: CoreDataStack!
     
+    // To hold the mode of the view (whether the statusbar and the toolbars are visible or not)
+    private enum ViewMode {
+        case visibleViews
+        case hiddenViews
+    }
+    
+    // Initialize the viewState to all views visible
+    private var viewState = ViewMode.visibleViews
+    
     // For holding the new meme
     var newMeme: Meme!
     
@@ -271,7 +280,30 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
-        view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first responder status
+        
+        if topTextField.isFirstResponder || bottomTextField.isFirstResponder {
+            view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first responder status
+        } else {
+            // Toggle the navigation bar and the buttom toolbar
+            if viewState == .visibleViews {
+                viewState = .hiddenViews
+                navigationBar.isHidden = true
+                toolBar.isHidden = true
+            } else {
+                viewState = .visibleViews
+                navigationBar.isHidden = false
+                toolBar.isHidden = false
+            }
+            
+            // Toggle the view's background color
+            if view.backgroundColor == .white {
+                view.backgroundColor = .black
+            } else {
+                view.backgroundColor = .white
+            }
+        }
+        
+        
     }
     
     
