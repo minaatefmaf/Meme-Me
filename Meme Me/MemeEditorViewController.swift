@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol MemeEditorViewControllerDelegate {
-    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeeIsEdited: Bool)
+    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool)
 }
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -116,10 +116,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBAction func saveMemedImage(_ sender: UIBarButtonItem) {
         // Return back that the image has been edited (if the scene was initiated to edit an old meme)
         if let memeEditorDelegate = memeEditorDelegate {
-            memeEditorDelegate.editTheMeme(MemeEditor: self, didEditMeme: true)
-            
             // Save the meme
             self.modifyOldMeme()
+            
+            // Let the other controller know about it (that the meme has been edited)
+            memeEditorDelegate.editTheMeme(MemeEditor: self, didEditMeme: true)
+            
         } else {
             // Save the meme
             self.saveNewMeme()

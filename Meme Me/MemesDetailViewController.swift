@@ -41,15 +41,6 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     // Initialize the viewState to all views visible
     private var viewState = ViewMode.visibleViews
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.imageView!.image = meme.image?.getMemedImage()
-        
-        // Add the tap recognizer
-        view.addGestureRecognizer(tapRecognizer!)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +56,13 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         
         // Configure the UI
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Add the tap recognizer
+        view.addGestureRecognizer(tapRecognizer!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -125,8 +123,11 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     
     // MARK: - MemeEditorViewControllerDelegate Methods
     
-    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeeIsEdited: Bool) {
-        // Refresh the scene
+    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool) {
+        // Update the scene using the new meme data
+        if memeIsEdited {
+            self.imageView!.image = meme.image?.getMemedImage()
+        }
     }
     
     
