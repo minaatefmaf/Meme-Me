@@ -82,12 +82,12 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     @IBAction func deleteButtonIsPressed(_ sender: Any) {
         // Prepare an alert to confirm the meme deletion
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let deleteAction = UIAlertAction(title: "Delete Meme", style: UIAlertActionStyle.destructive) { [weak weakSelf = self] _ in
+        let deleteAction = UIAlertAction(title: Alerts.DeleteMeme, style: UIAlertActionStyle.destructive) { [weak weakSelf = self] _ in
             // Delete the meme
             weakSelf?.deleteTheMeme()
         }
         alert.addAction(deleteAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: Alerts.Cancel, style: UIAlertActionStyle.cancel, handler: nil))
         
         // Present the alert
         self.present(alert, animated: true, completion: nil)

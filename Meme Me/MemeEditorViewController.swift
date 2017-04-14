@@ -132,7 +132,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if sceneMode == .modifyOldMeme {
             // Prepare an alert to confirm the meme deletion
             let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-            let saveNewAction = UIAlertAction(title: "Save", style: .default) { [weak weakSelf = self] _ in
+            
+            // The Save meme action
+            let saveNewAction = UIAlertAction(title: Alerts.SaveMeme, style: .default) { [weak weakSelf = self] _ in
                 // Create and sava a new meme
                 weakSelf?.createAndSaveNewMeme()
                 
@@ -142,7 +144,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 // Navigate back to the meme viewer
                 weakSelf?.dismiss(animated: true, completion: nil)
             }
-            let saveNewAndDeleteOldAction = UIAlertAction(title: "Save & Delete Old Meme", style: .destructive) { [weak weakSelf = self] _ in
+            
+            // The Save meme & Delete old meme action
+            let saveNewAndDeleteOldAction = UIAlertAction(title: Alerts.SaveAndDeleteOldMeme, style: .destructive) { [weak weakSelf = self] _ in
                 // Create and sava a new meme
                 weakSelf?.createAndSaveNewMeme()
                 
@@ -161,7 +165,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             
             alert.addAction(saveNewAction)
             alert.addAction(saveNewAndDeleteOldAction)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: Alerts.Cancel, style: .cancel, handler: nil))
             
             // Present the alert
             self.present(alert, animated: true, completion: nil)
