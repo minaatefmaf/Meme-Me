@@ -126,8 +126,14 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool, newMeme: Meme?) {
         // Update the scene using the new meme data
         if memeIsEdited {
+            // Update the meme
             meme = newMeme!
+            
+            // Update the image
             imageView!.image = meme.image?.getMemedImage()
+            
+            // Update the navigation bar's title
+            setNavigationBarTitle()
         }
     }
     
@@ -161,6 +167,17 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         self.navigationController!.popViewController(animated: true)
     }
     
+    private func setNavigationBarTitle() {
+        // Prepare the date in a human readable format
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        let dateString = formatter.string(from: meme.createdAt as! Date)
+        
+        // Set the title to the date the meme was created
+        navigationItem.title = dateString
+    }
+    
     
     // MARK: - UI Configurations
     
@@ -170,6 +187,9 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         
         // Initialize the view's background color to white
         view.backgroundColor = .white
+        
+        // Set the navigation bar's title
+        setNavigationBarTitle()
         
         // Initialize and configure the tap recognizer
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
