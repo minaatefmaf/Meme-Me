@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemesDetailViewController: UIViewController {
+class MemesDetailViewController: UIViewController, MemeEditorViewControllerDelegate {
     
     @IBOutlet weak var buttomToolbar: UIToolbar!
     @IBOutlet weak var imageView: UIImageView!
@@ -122,17 +122,28 @@ class MemesDetailViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - MemeEditorViewControllerDelegate Methods
+    
+    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeeIsEdited: Bool) {
+        // Refresh the scene
+    }
+    
+    
     // MARK: - Helper Methods
     
     // Navigate to the MemeEditor when needed
     func navigateToMemeEditorView() {
-        var controller: MemeEditorViewController
-        controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+        var memeEditorViewController: MemeEditorViewController
+        memeEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
         // Send the meme
-        controller.oldMeme = self.meme
+        memeEditorViewController.oldMeme = self.meme
         
-        self.present(controller, animated: true, completion: nil)
+        // Set the editor to be this cotroller's delegate
+        memeEditorViewController.memeEditorDelegate = self
+        
+        self.present(memeEditorViewController, animated: true, completion: nil)
     }
     
     private func deleteTheMeme() {
