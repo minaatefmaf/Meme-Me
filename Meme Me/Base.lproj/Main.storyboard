@@ -89,16 +89,6 @@
                             <constraint firstAttribute="trailing" secondItem="Eim-yK-KVl" secondAttribute="trailing" id="ZVg-t1-FRm"/>
                             <constraint firstItem="8hs-mH-6fI" firstAttribute="leading" secondItem="c2w-CJ-NfB" secondAttribute="leading" id="d8t-KJ-QZE"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="8hs-mH-6fI"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="8hs-mH-6fI"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="buttomToolbar" destination="Eim-yK-KVl" id="eNE-zl-33B"/>
@@ -122,7 +112,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eMF-ug-utB" id="Cv8-50-wFI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="OLk-cH-CaY">
@@ -314,13 +304,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pek-OT-3yS">
-                                <rect key="frame" x="16" y="70" width="343" height="17"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pek-OT-3yS">
+                                <rect key="frame" x="16" y="80" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eE0-dW-rj2">
-                                <rect key="frame" x="16" y="580" width="343" height="17"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eE0-dW-rj2">
+                                <rect key="frame" x="16" y="570" width="343" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -332,11 +322,13 @@
                             <constraint firstAttribute="centerX" secondItem="Pek-OT-3yS" secondAttribute="centerX" id="4Oh-h6-orO"/>
                             <constraint firstItem="aEf-Wm-pJc" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="B7z-yn-yON"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qnW-RN-mDG" secondAttribute="bottom" symbolic="YES" id="E8W-ok-BGJ"/>
-                            <constraint firstItem="Pek-OT-3yS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="100" id="GDC-qP-02n">
-                                <variation key="widthClass=compact" constant="70"/>
+                            <constraint firstItem="Pek-OT-3yS" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="80" id="GDC-qP-02n">
+                                <variation key="heightClass=compact-widthClass=compact" constant="50"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="50"/>
                             </constraint>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="eE0-dW-rj2" secondAttribute="bottom" constant="100" id="HMX-Yd-a9f">
-                                <variation key="widthClass=compact" constant="70"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="eE0-dW-rj2" secondAttribute="bottom" constant="80" id="HMX-Yd-a9f">
+                                <variation key="heightClass=compact-widthClass=compact" constant="50"/>
+                                <variation key="heightClass=compact-widthClass=regular" constant="50"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="4hC-O2-zY8" secondAttribute="trailing" constant="-20" id="Nto-ZA-SCI"/>
                             <constraint firstItem="aEf-Wm-pJc" firstAttribute="top" secondItem="4hC-O2-zY8" secondAttribute="top" id="Qg2-Se-Son"/>
@@ -350,24 +342,6 @@
                             <constraint firstItem="4hC-O2-zY8" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" symbolic="YES" id="vht-Ox-fcS"/>
                             <constraint firstItem="aEf-Wm-pJc" firstAttribute="leading" secondItem="qnW-RN-mDG" secondAttribute="leading" id="yI3-hk-kI7"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="aEf-Wm-pJc"/>
-                                <exclude reference="qnW-RN-mDG"/>
-                                <exclude reference="4hC-O2-zY8"/>
-                                <exclude reference="Pek-OT-3yS"/>
-                                <exclude reference="eE0-dW-rj2"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="aEf-Wm-pJc"/>
-                                <include reference="qnW-RN-mDG"/>
-                                <include reference="4hC-O2-zY8"/>
-                                <include reference="Pek-OT-3yS"/>
-                                <include reference="eE0-dW-rj2"/>
-                            </mask>
-                        </variation>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
