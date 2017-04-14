@@ -222,22 +222,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
-        view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first                   responder status
+        view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first responder status
     }
     
     func modifyOldMeme() {
-        // Save the text
-        oldMeme?.topText = topTextField.text
-        oldMeme?.bottomText = bottomTextField.text
+        // Update the text
+        oldMeme!.topText = topTextField.text
+        oldMeme!.bottomText = bottomTextField.text
         
-        // Save the images to the disc
-        let image = ImageData(context: coreDataStack.context)
-        image.originalImage = imagePickerView.image
+        // Update the images
+        oldMeme!.image!.originalImage = imagePickerView.image
         let memedImage = generateMemedImage()
-        image.memedImage = memedImage
-        
-        oldMeme?.image = image
-        oldMeme?.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
+        oldMeme!.image!.memedImage = memedImage
+        oldMeme!.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
         
         // Persisit the meme to the disc
         coreDataStack.save()
