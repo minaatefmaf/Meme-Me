@@ -17,6 +17,7 @@
 		2E58F6811E8C5F6C0018F0E6 /* Meme+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E58F6801E8C5F6C0018F0E6 /* Meme+CoreDataProperties.swift */; };
 		2E77E1871E96F9F7003809AD /* ImageData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77E1851E96F9F7003809AD /* ImageData+CoreDataClass.swift */; };
 		2E77E1881E96F9F7003809AD /* ImageData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77E1861E96F9F7003809AD /* ImageData+CoreDataProperties.swift */; };
+		2E88144C1EA0DEE10019AD6F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E88144B1EA0DEE10019AD6F /* UIImageExtension.swift */; };
 		2EB266B91E9DC0CB00162B18 /* AppPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB266B81E9DC0CB00162B18 /* AppPermissions.swift */; };
 		2EB266BB1E9DCBBE00162B18 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB266BA1E9DCBBE00162B18 /* Constants.swift */; };
 		2ECC29051E9A774C00004B37 /* CoreDataCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECC29041E9A774C00004B37 /* CoreDataCollectionViewController.swift */; };
@@ -53,6 +54,7 @@
 		2E58F6801E8C5F6C0018F0E6 /* Meme+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Meme+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2E77E1851E96F9F7003809AD /* ImageData+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2E77E1861E96F9F7003809AD /* ImageData+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2E88144B1EA0DEE10019AD6F /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		2EB266B81E9DC0CB00162B18 /* AppPermissions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPermissions.swift; sourceTree = "<group>"; };
 		2EB266BA1E9DCBBE00162B18 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2ECC29041E9A774C00004B37 /* CoreDataCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				2E4B7E381E8AC34F000BD182 /* Meme+CoreDataClass.swift */,
 				2E77E1861E96F9F7003809AD /* ImageData+CoreDataProperties.swift */,
 				2E77E1851E96F9F7003809AD /* ImageData+CoreDataClass.swift */,
+				2E88144B1EA0DEE10019AD6F /* UIImageExtension.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				2ECEDACA1B13DF7A00D6FB36 /* MemesDetailViewController.swift in Sources */,
 				2EB266BB1E9DCBBE00162B18 /* Constants.swift in Sources */,
 				2E77E1871E96F9F7003809AD /* ImageData+CoreDataClass.swift in Sources */,
+				2E88144C1EA0DEE10019AD6F /* UIImageExtension.swift in Sources */,
 				2ECEDAC21B13948100D6FB36 /* MemesCollectionViewController.swift in Sources */,
 				2E58F6811E8C5F6C0018F0E6 /* Meme+CoreDataProperties.swift in Sources */,
 				2ECC53711B0CC318007FCAF7 /* MemeEditorViewController.swift in Sources */,

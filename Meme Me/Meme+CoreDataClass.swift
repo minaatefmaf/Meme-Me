@@ -20,7 +20,7 @@ public class Meme: NSManagedObject {
     
     // Auto convertion from UIImage to NSData
     var thumbnailImage: UIImage! {
-        didSet { thumbnailImageData = UIImagePNGRepresentation(thumbnailImage) as NSData? }
+        didSet { thumbnailImageData = UIImageJPEGRepresentation(thumbnailImage, 1.0) as NSData? }
     }
     
     // Initialize the class from a dictionary

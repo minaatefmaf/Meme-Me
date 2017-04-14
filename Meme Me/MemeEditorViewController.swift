@@ -381,7 +381,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         // Save the images to the disc
         let image = ImageData(context: coreDataStack.context)
-        image.originalImage = imagePickerView.image
+        
+        // Make sure the image is saved with the correct orientaion (when captured by the camera)
+        image.originalImage = imagePickerView.image?.correctlyOrientedImage()
         let memedImage = generateMemedImage()
         image.memedImage = memedImage
         

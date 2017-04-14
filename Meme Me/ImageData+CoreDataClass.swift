@@ -20,10 +20,10 @@ public class ImageData: NSManagedObject {
     
     /* Auto convertion from UIImage to NSData for the images */
     var originalImage: UIImage! {
-        didSet { originalImageData = UIImagePNGRepresentation(originalImage) as NSData? }
+        didSet { originalImageData = UIImageJPEGRepresentation(originalImage, 1.0) as NSData? }
     }
     var memedImage: UIImage! {
-        didSet { memedImageData = UIImagePNGRepresentation(memedImage) as NSData? }
+        didSet { memedImageData = UIImageJPEGRepresentation(memedImage, 1.0) as NSData? }
     }
     
     
