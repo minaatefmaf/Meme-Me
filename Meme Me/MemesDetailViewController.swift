@@ -49,10 +49,10 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         
         // Add the right bar button
         addNewMemeButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(MemesDetailViewController.navigateToMemeEditorView))
-        self.navigationItem.setRightBarButtonItems([addNewMemeButton], animated: false)
+        navigationItem.setRightBarButtonItems([addNewMemeButton], animated: false)
         
         // Add the image
-        self.imageView!.image = meme.image?.getMemedImage()
+        imageView!.image = meme.image?.getMemedImage()
         
         // Configure the UI
         configureUI()
@@ -123,10 +123,11 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     
     // MARK: - MemeEditorViewControllerDelegate Methods
     
-    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool) {
+    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool, newMeme: Meme?) {
         // Update the scene using the new meme data
         if memeIsEdited {
-            self.imageView!.image = meme.image?.getMemedImage()
+            meme = newMeme!
+            imageView!.image = meme.image?.getMemedImage()
         }
     }
     
@@ -138,8 +139,11 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         var memeEditorViewController: MemeEditorViewController
         memeEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
-        // Send the meme
+        // Send the meme to be edited
         memeEditorViewController.oldMeme = self.meme
+        
+        // Set the sceneMode of the memeEditorViewController to the modifying old meme mode
+        memeEditorViewController.sceneMode = .modifyOldMeme
         
         // Set the editor to be this cotroller's delegate
         memeEditorViewController.memeEditorDelegate = self

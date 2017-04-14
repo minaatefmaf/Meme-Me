@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 protocol MemeEditorViewControllerDelegate {
-    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool)
+    func editTheMeme(MemeEditor: MemeEditorViewController, didEditMeme memeIsEdited: Bool, newMeme: Meme?)
 }
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -37,10 +37,23 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var coreDataStack: CoreDataStack!
     
+    // For holding the new meme
+    var newMeme: Meme!
+    
     // For holding the old meme if the scene is initiated to edit an old meme
     var oldMeme: Meme?
     
+    // A placeholder for the delegate
     var memeEditorDelegate: MemeEditorViewControllerDelegate?
+    
+    // To hold the state of the scene (either creating a new meme, or modifying an old one)
+    enum EditorMode {
+        case createNewMeme
+        case modifyOldMeme
+    }
+    
+    // Initialize the sceneMode to meme creation mode
+    var sceneMode: EditorMode = .createNewMeme
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,23 +127,50 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     @IBAction func saveMemedImage(_ sender: UIBarButtonItem) {
-        // Return back that the image has been edited (if the scene was initiated to edit an old meme)
-        if let memeEditorDelegate = memeEditorDelegate {
-            // Save the meme
-            self.modifyOldMeme()
+        
+        // If the editor is in the the "modifying an old meme" mode, check if the user want to keep the old meme or delete it
+        if sceneMode == .modifyOldMeme {
+            // Prepare an alert to confirm the meme deletion
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+            let saveNewAction = UIAlertAction(title: "Save", style: .default) { [weak weakSelf = self] _ in
+                // Create and sava a new meme
+                weakSelf?.createAndSaveNewMeme()
+                
+                // Let the other controller know that the meme has been edited, and pass the new meme
+                weakSelf?.memeEditorDelegate!.editTheMeme(MemeEditor: self, didEditMeme: true, newMeme: weakSelf?.newMeme)
+                
+                // Navigate back to the meme viewer
+                weakSelf?.dismiss(animated: true, completion: nil)
+            }
+            let saveNewAndDeleteOldAction = UIAlertAction(title: "Save & Delete Old Meme", style: .destructive) { [weak weakSelf = self] _ in
+                // Create and sava a new meme
+                weakSelf?.createAndSaveNewMeme()
+                
+                // Delete the old meme
+                weakSelf?.coreDataStack.context.delete((weakSelf?.oldMeme)!)
+                
+                // Persist the context to the disk
+                weakSelf?.coreDataStack.save()
+                
+                // Let the other controller know that the meme has been edited, and pass the new meme
+                weakSelf?.memeEditorDelegate!.editTheMeme(MemeEditor: self, didEditMeme: true, newMeme: weakSelf?.newMeme)
+                
+                // Navigate back to the meme viewer
+                weakSelf?.dismiss(animated: true, completion: nil)
+            }
             
-            // Let the other controller know about it (that the meme has been edited)
-            memeEditorDelegate.editTheMeme(MemeEditor: self, didEditMeme: true)
+            alert.addAction(saveNewAction)
+            alert.addAction(saveNewAndDeleteOldAction)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
+            // Present the alert
+            self.present(alert, animated: true, completion: nil)
+        
         } else {
-            // Save the meme
-            self.saveNewMeme()
+            // Navigate back to the table/collection view
+            self.dismiss(animated: true, completion: nil)
+
         }
-        
-        
-        // Navigate back to the table/collection view
-        self.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func cancelMemeEditor(_ sender: UIBarButtonItem) {
@@ -227,62 +267,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first responder status
     }
     
-    func modifyOldMeme() {
-        // Update the text
-        oldMeme!.topText = topTextField.text
-        oldMeme!.bottomText = bottomTextField.text
-        
-        // Update the images
-        oldMeme!.image!.originalImage = imagePickerView.image
-        let memedImage = generateMemedImage()
-        oldMeme!.image!.memedImage = memedImage
-        oldMeme!.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
-        
-        // Persisit the meme to the disc
-        coreDataStack.save()
-    }
-    
-    func saveNewMeme() {
-        // Create the meme dictionary
-        let dictionary: [String : String] = [
-            Meme.Keys.TopText: topTextField.text!,
-            Meme.Keys.BottomText: bottomTextField.text!
-        ]
-        
-        // Create the meme
-        let meme = Meme(dictionary: dictionary, context: coreDataStack.context)
-        
-        // Save the images to the disc
-        let image = ImageData(context: coreDataStack.context)
-        image.originalImage = imagePickerView.image
-        let memedImage = generateMemedImage()
-        image.memedImage = memedImage
-        
-        meme.image = image
-        meme.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
-        
-        // Persisit the meme to the disc
-        coreDataStack.save()        
-    }
-    
-    func generateMemedImage() -> UIImage {
-        
-        // Hide navigationBar and toolBar
-        navigationBar.isHidden = true
-        toolBar.isHidden = true
-        
-        // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        // Show navigationBar and toolBar
-        navigationBar.isHidden = false
-        toolBar.isHidden = false
-        
-        return memedImage
-    }
     
     // MARK: - Creating The Thumbnail Image Helper functions
     
@@ -345,6 +329,49 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // MARK: - General Helper Methods
+    
+    func createAndSaveNewMeme() {
+        // Create the meme dictionary
+        let dictionary: [String : String] = [
+            Meme.Keys.TopText: topTextField.text!,
+            Meme.Keys.BottomText: bottomTextField.text!
+        ]
+        
+        // Create the meme
+        newMeme = Meme(dictionary: dictionary, context: coreDataStack.context)
+        
+        // Save the images to the disc
+        let image = ImageData(context: coreDataStack.context)
+        image.originalImage = imagePickerView.image
+        let memedImage = generateMemedImage()
+        image.memedImage = memedImage
+        
+        newMeme.image = image
+        newMeme.thumbnailImage = prepareTheThumbnailImage(image: memedImage)
+        
+        // Persisit the meme to the disc
+        coreDataStack.save()
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        // Hide navigationBar and toolBar
+        navigationBar.isHidden = true
+        toolBar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // Show navigationBar and toolBar
+        navigationBar.isHidden = false
+        toolBar.isHidden = false
+        
+        return memedImage
+    }
+
     private func showAlertAndRedirectToSettings(alertTitle title: String, alertMessage message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
