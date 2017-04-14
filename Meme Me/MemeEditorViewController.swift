@@ -170,7 +170,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             // Present the alert
             self.present(alert, animated: true, completion: nil)
         
-        } else {
+        } else { // The meme creation mode
+            // Save the new meme
+            createAndSaveNewMeme()
+            
             // Navigate back to the table/collection view
             self.dismiss(animated: true, completion: nil)
 
