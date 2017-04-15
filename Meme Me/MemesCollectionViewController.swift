@@ -16,23 +16,8 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let space: CGFloat = 0.0
-        var dimension: CGFloat!
-        
-        // Define the minimum number of items on a row for regular to be 5, and 3 for compact (and unspecified)
-        let horizontalClass = self.traitCollection.horizontalSizeClass
-        if horizontalClass == .regular {
-            dimension = min((view.frame.size.width - (2 * space)) / 5.0,
-                                (view.frame.size.height - (2 * space)) / 5.0)
-        } else {
-            dimension = min((view.frame.size.width - (2 * space)) / 3.0,
-                                (view.frame.size.height - (2 * space)) / 3.0)
-        }
-        
-        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+        // Properly layout the items in the collection view
+        layoutTheCollectionView()
         
         // Get the core data stack
         let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -62,6 +47,11 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
         // Configure the UI
         configureUI()
         
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Properly layout the items in the collection view
+        layoutTheCollectionView()
     }
     
     @IBAction func addMeme(_ sender: UIBarButtonItem) {
@@ -121,6 +111,26 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
     
    
     // MARK: - UI Configurations
+    
+    func layoutTheCollectionView() {
+        let space: CGFloat = 0.0
+        var dimension: CGFloat!
+        
+        // Define the minimum number of items on a row for regular to be 5, and 3 for compact (and unspecified)
+        let horizontalClass = self.traitCollection.horizontalSizeClass
+        if horizontalClass == .regular {
+            dimension = min((view.frame.size.width - (2 * space)) / 5.0,
+                            (view.frame.size.height - (2 * space)) / 5.0)
+        } else {
+            dimension = min((view.frame.size.width - (2 * space)) / 3.0,
+                            (view.frame.size.height - (2 * space)) / 3.0)
+        }
+        
+        flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+    }
     
     func configureUI() {
         // Show the navigation bar
