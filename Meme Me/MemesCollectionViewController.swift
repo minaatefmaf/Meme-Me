@@ -17,8 +17,17 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
         super.viewDidLoad()
         
         let space: CGFloat = 0.0
-        let dimension = min((view.frame.size.width - (2 * space)) / 3.0,
-                            (view.frame.size.height - (2 * space)) / 3.0)
+        var dimension: CGFloat!
+        
+        // Define the minimum number of items on a row for regular to be 5, and 3 for compact (and unspecified)
+        let horizontalClass = self.traitCollection.horizontalSizeClass
+        if horizontalClass == .regular {
+            dimension = min((view.frame.size.width - (2 * space)) / 5.0,
+                                (view.frame.size.height - (2 * space)) / 5.0)
+        } else {
+            dimension = min((view.frame.size.width - (2 * space)) / 3.0,
+                                (view.frame.size.height - (2 * space)) / 3.0)
+        }
         
         flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumInteritemSpacing = space
