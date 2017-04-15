@@ -77,6 +77,18 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
         // Define an instance of the ActivityViewController
         let activityController = UIActivityViewController(activityItems: [self.imageView!.image as Any], applicationActivities: nil)
+        
+        activityController.completionWithItemsHandler = { [weak weakSelf = self] _ in
+            // Make sure the delete button is enabled (for the iPad case)
+            weakSelf?.deleteBarButton.isEnabled = true
+        }
+
+        // For iPads, telling them where to attach the popover (the action sheet replaceable there)
+        activityController.popoverPresentationController?.barButtonItem = shareBarButton
+        
+        // Make sure the delete button is disabled (for the iPad case)
+        deleteBarButton.isEnabled = false
+        
         // Present the ActivityViewController
         self.present(activityController, animated: true, completion: nil)
     }
