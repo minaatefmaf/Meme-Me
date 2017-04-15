@@ -15,28 +15,27 @@ protocol MemeEditorViewControllerDelegate {
 
 class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var topTextField: UITextField!
-    @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var saveBarButton: UIBarButtonItem!
-    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
-    
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet private weak var imagePickerView: UIImageView!
+    @IBOutlet private weak var cameraButton: UIBarButtonItem!
+    @IBOutlet private weak var topTextField: UITextField!
+    @IBOutlet private weak var bottomTextField: UITextField!
+    @IBOutlet private weak var saveBarButton: UIBarButtonItem!
+    @IBOutlet private weak var cancelBarButton: UIBarButtonItem!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
+    @IBOutlet private weak var toolBar: UIToolbar!
     
     private var tapRecognizer: UITapGestureRecognizer? = nil
     
     // Add references to the delegates
-    let memeTopTextFieldDelegate = MemeTextFieldDelegate()
-    let memeBottomTextFieldDelegate = MemeTextFieldDelegate()
+    private let memeTopTextFieldDelegate = MemeTextFieldDelegate()
+    private let memeBottomTextFieldDelegate = MemeTextFieldDelegate()
     
     // Set the default text attributes dictionary.
-    let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
+    private let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
     // Set the core data stack variable
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    var coreDataStack: CoreDataStack!
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private var coreDataStack: CoreDataStack!
     
     // To hold the mode of the view (whether the statusbar and the toolbars are visible or not)
     private enum ViewMode {
@@ -48,7 +47,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     private var viewState = ViewMode.visibleViews
     
     // For holding the new meme
-    var newMeme: Meme!
+    private var newMeme: Meme!
     
     // For holding the old meme if the scene is initiated to edit an old meme
     var oldMeme: Meme?
@@ -65,56 +64,29 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Initialize the sceneMode to meme creation mode
     var sceneMode: EditorMode = .createNewMeme
     
+    override var prefersStatusBarHidden: Bool {
+        // Hide the status bar
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the core data stack
         coreDataStack = appDelegate.coreDataStack
         
-        // Assign our defult text attributes to the textfields
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        
-        // Set the textfields' initial text
-        topTextField.text = "TOP TEXT"
-        bottomTextField.text = "BOTTOM TEXT"
-        
-        // Align the text in the textfields to center.
-        topTextField.textAlignment = NSTextAlignment.center
-        bottomTextField.textAlignment = NSTextAlignment.center
-        
-        // Disable the save button initially.
-        saveBarButton.isEnabled = false
-        
-        // Assign each textfield to its proper delegate
-        topTextField.delegate = memeTopTextFieldDelegate
-        bottomTextField.delegate = memeBottomTextFieldDelegate
-        
-        // Initialize the meme data if the scene is initiated to edit an old meme
-        if let oldMeme = self.oldMeme {
-            imagePickerView.image = oldMeme.image!.getOriginalImage()
-            topTextField.text = oldMeme.topText
-            bottomTextField.text = oldMeme.bottomText
-            
-            // Enable the save button
-            saveBarButton.isEnabled = true
-        }
-        
-        // Initialize and configure the tap recognizer
-        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
-        tapRecognizer?.numberOfTapsRequired = 1
+        // Configure the UI
+        configureUIForViewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Disable the camera button if the device doesn't have a camera (e.g. the simulator)
-        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
-            cameraButton.isEnabled = false
-        }
+        // Configure the UI
+        configureUIForViewWillAppear()
         
         // Subscribe to keyboard notifications to allow the view to raise when necessary
-        self.subscribeToKeyboardNotifications()
+        subscribeToKeyboardNotifications()
         
         // Add the tap recognizer
         addKeyboardDismissRecognizer()
@@ -124,19 +96,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillDisappear(animated)
         
         // Unsubscribe to keyboard notifications
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
         
         // Remove the tap recognizer
         removeKeyboardDismissRecognizer()
     }
     
-    
-    override var prefersStatusBarHidden : Bool {
-        // Hide the status bar
-        return true
-    }
-    
-    @IBAction func saveMemedImage(_ sender: UIBarButtonItem) {
+    @IBAction private func saveMemedImage(_ sender: UIBarButtonItem) {
         
         // If the editor is in the the "modifying an old meme" mode, check if the user want to keep the old meme or delete it
         if sceneMode == .modifyOldMeme {
@@ -203,12 +169,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    @IBAction func cancelMemeEditor(_ sender: UIBarButtonItem) {
+    @IBAction private func cancelMemeEditor(_ sender: UIBarButtonItem) {
         // Navigate back to the table/collection view
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
+    @IBAction private func pickAnImageFromCamera(_ sender: UIBarButtonItem) {
         // Make sure the app has the permission to open the camera
         let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         guard status == .authorized else {
@@ -219,7 +185,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         pickAnImage(UIImagePickerControllerSourceType.camera)
     }
     
-    @IBAction func pickAnImageFromAlbum(_ sender: UIBarButtonItem) {
+    @IBAction private func pickAnImageFromAlbum(_ sender: UIBarButtonItem) {
         // Make sure the app has the permission to access the photo library
         let status = PHPhotoLibrary.authorizationStatus()
         guard status == .authorized else {
@@ -232,7 +198,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // A general function to pick an image from a given source.
     // Its soul purpose is to serve the (IBAction pickAnImageFromCamera) & (IBAction pickAnImageFromAlbum) functions.
-    func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
+    private func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = sourceType
@@ -249,7 +215,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    
+    // MARK: - Keyboard Fixes
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
         // Accommodate for the keyboard when the user try to enter text in the bottom textfield.
         if bottomTextField.isFirstResponder {
             self.view.frame.origin.y = 0
@@ -257,43 +226,41 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         // Accommodate for the keyboard when the user finish editing the text in the bottom textfield.
         if bottomTextField.isFirstResponder {
             self.view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
-    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+    private func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         // Get the keyboard height.
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // Of CGRect
         return keyboardSize.cgRectValue.height
     }
     
-    func subscribeToKeyboardNotifications() {
+    private func subscribeToKeyboardNotifications() {
         // Get a notification when the keyboard show or hide.
         NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func unsubscribeFromKeyboardNotifications() {
+    private func unsubscribeFromKeyboardNotifications() {
         // Unsubscribe from the notifications we subscribed earlier.
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    // MARK: - Keyboard Fixes
-    
-    func addKeyboardDismissRecognizer() {
+    private func addKeyboardDismissRecognizer() {
         view.addGestureRecognizer(tapRecognizer!)
     }
     
-    func removeKeyboardDismissRecognizer() {
+    private func removeKeyboardDismissRecognizer() {
         view.removeGestureRecognizer(tapRecognizer!)
     }
     
-    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+    @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         
         if topTextField.isFirstResponder || bottomTextField.isFirstResponder {
             view.endEditing(true) // this will cause the view (or any of its embedded text fields to resign the first responder status
@@ -323,7 +290,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - Creating The Thumbnail Image Helper functions
     
-    func prepareTheThumbnailImage(image: UIImage) -> UIImage {
+    private func prepareTheThumbnailImage(image: UIImage) -> UIImage {
         
         // Crop the image:
         let croppedImage = cropToSquareImage(image: image)
@@ -335,7 +302,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
-    func cropToSquareImage(image: UIImage) -> UIImage {
+    private func cropToSquareImage(image: UIImage) -> UIImage {
         
         let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
         let contextSize: CGSize = contextImage.size
@@ -364,7 +331,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
     }
     
-    func resizeImage(image: UIImage, scaleX: CGFloat, scaleY: CGFloat) -> UIImage {
+    private func resizeImage(image: UIImage, scaleX: CGFloat, scaleY: CGFloat) -> UIImage {
         
         let size = image.size.applying(CGAffineTransform(scaleX: scaleX, y: scaleY))
         let hasAlpha = false
@@ -383,7 +350,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     // MARK: - General Helper Methods
     
-    func createAndSaveNewMeme() {
+    private func createAndSaveNewMeme() {
         // Create the meme dictionary
         let dictionary: [String : String] = [
             Meme.Keys.TopText: topTextField.text!,
@@ -408,7 +375,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         coreDataStack.save()
     }
     
-    func generateMemedImage() -> UIImage {
+    private func generateMemedImage() -> UIImage {
         
         // Hide navigationBar and toolBar
         navigationBar.isHidden = true
@@ -440,6 +407,51 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         alert.addAction(confirmAction)
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - ConfigureUI Helper Methods
+    
+    private func configureUIForViewDidLoad() {
+        // Assign our defult text attributes to the textfields
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        
+        // Set the textfields' initial text
+        topTextField.text = "TOP TEXT"
+        bottomTextField.text = "BOTTOM TEXT"
+        
+        // Align the text in the textfields to center.
+        topTextField.textAlignment = NSTextAlignment.center
+        bottomTextField.textAlignment = NSTextAlignment.center
+        
+        // Disable the save button initially.
+        saveBarButton.isEnabled = false
+        
+        // Assign each textfield to its proper delegate
+        topTextField.delegate = memeTopTextFieldDelegate
+        bottomTextField.delegate = memeBottomTextFieldDelegate
+        
+        // Initialize the meme data if the scene is initiated to edit an old meme
+        if let oldMeme = self.oldMeme {
+            imagePickerView.image = oldMeme.image!.getOriginalImage()
+            topTextField.text = oldMeme.topText
+            bottomTextField.text = oldMeme.bottomText
+            
+            // Enable the save button
+            saveBarButton.isEnabled = true
+        }
+        
+        // Initialize and configure the tap recognizer
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
+        tapRecognizer?.numberOfTapsRequired = 1
+    }
+    
+    private func configureUIForViewWillAppear() {
+        // Disable the camera button if the device doesn't have a camera (e.g. the simulator)
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            cameraButton.isEnabled = false
+        }
     }
     
 }
