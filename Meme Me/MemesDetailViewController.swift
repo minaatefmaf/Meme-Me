@@ -102,7 +102,7 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
             // Delete the meme
             weakSelf?.deleteTheMeme()
         }
-        let cancelAction = UIAlertAction(title: Alerts.Cancel, style: UIAlertActionStyle.cancel) { [weak weakSelf = self] _ in
+        let cancelAction = UIAlertAction(title: Alerts.Cancel, style: .cancel) { [weak weakSelf = self] _ in
             // Make sure the share button is enabled (for the iPad case)
             weakSelf?.shareBarButton.isEnabled = true
         }

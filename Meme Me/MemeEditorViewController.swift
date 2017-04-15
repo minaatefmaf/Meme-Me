@@ -19,7 +19,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
+    @IBOutlet weak var cancelBarButton: UIBarButtonItem!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -83,7 +84,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.textAlignment = NSTextAlignment.center
         
         // Disable the save button initially.
-        saveButton.isEnabled = false
+        saveBarButton.isEnabled = false
         
         // Assign each textfield to its proper delegate
         topTextField.delegate = memeTopTextFieldDelegate
@@ -96,7 +97,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             bottomTextField.text = oldMeme.bottomText
             
             // Enable the save button
-            saveButton.isEnabled = true
+            saveBarButton.isEnabled = true
         }
         
         // Initialize and configure the tap recognizer
@@ -172,9 +173,22 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
                 weakSelf?.dismiss(animated: true, completion: nil)
             }
             
+            // The cancel action
+            let cancelAction = UIAlertAction(title: Alerts.Cancel, style: .cancel) { [weak weakSelf = self] _ in
+                // Make sure the cancel button is enabled (for the iPad case)
+                weakSelf?.cancelBarButton.isEnabled = true
+            }
+            
+            // Add the actions
             alert.addAction(saveNewAction)
             alert.addAction(saveNewAndDeleteOldAction)
-            alert.addAction(UIAlertAction(title: Alerts.Cancel, style: .cancel, handler: nil))
+            alert.addAction(cancelAction)
+            
+            // For iPads, telling them where to attach the popover (the action sheet replaceable there)
+            alert.popoverPresentationController?.barButtonItem = saveBarButton
+            
+            // Make sure the cancel button is disabled (for the iPad case)
+            cancelBarButton.isEnabled = false
             
             // Present the alert
             self.present(alert, animated: true, completion: nil)
@@ -230,7 +244,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.imagePickerView.image = image
             // Enable the save button when an image has been chosen.
-            saveButton.isEnabled = true
+            saveBarButton.isEnabled = true
         }
         self.dismiss(animated: true, completion: nil)
     }
