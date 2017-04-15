@@ -10,8 +10,8 @@ import UIKit
 
 class MemesDetailViewController: UIViewController, MemeEditorViewControllerDelegate {
     
-    @IBOutlet weak var buttomToolbar: UIToolbar!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet private weak var buttomToolbar: UIToolbar!
+    @IBOutlet private weak var imageView: UIImageView!
     
     var meme: Meme!
     
@@ -21,11 +21,11 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     private var tapRecognizer: UITapGestureRecognizer? = nil
     
     // Use to show/hide the status bar
-    var statusBarIsHidden = false
+    private var statusBarIsHidden = false
     
     // Set the core data stack variable
-    let delegate = UIApplication.shared.delegate as! AppDelegate
-    var coreDataStack: CoreDataStack!
+    private let delegate = UIApplication.shared.delegate as! AppDelegate
+    private var coreDataStack: CoreDataStack!
     
     override var prefersStatusBarHidden: Bool {
         // Show/Hide the status bar
@@ -72,14 +72,14 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         view.removeGestureRecognizer(tapRecognizer!)
     }
     
-    @IBAction func shareMemedImage(_ sender: UIBarButtonItem) {
+    @IBAction private func shareMemedImage(_ sender: UIBarButtonItem) {
         // Define an instance of the ActivityViewController
         let activityController = UIActivityViewController(activityItems: [self.imageView!.image as Any], applicationActivities: nil)
         // Present the ActivityViewController
         self.present(activityController, animated: true, completion: nil)
     }
     
-    @IBAction func deleteButtonIsPressed(_ sender: Any) {
+    @IBAction private func deleteButtonIsPressed(_ sender: Any) {
         // Prepare an alert to confirm the meme deletion
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         let deleteAction = UIAlertAction(title: Alerts.DeleteMeme, style: UIAlertActionStyle.destructive) { [weak weakSelf = self] _ in
@@ -96,7 +96,7 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     
     // MARK: - Tab Recognizer Methods
     
-    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+    @objc private func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         // Toggle the status bar
         statusBarIsHidden = !statusBarIsHidden
         setNeedsStatusBarAppearanceUpdate()
@@ -141,7 +141,7 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     // MARK: - Helper Methods
     
     // Navigate to the MemeEditor when needed
-    func navigateToMemeEditorView() {
+    @objc private func navigateToMemeEditorView() {
         var memeEditorViewController: MemeEditorViewController
         memeEditorViewController = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
@@ -181,7 +181,7 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     
     // MARK: - UI Configurations
     
-    func configureUI() {
+    private func configureUI() {
         // Hide the tab bar
         tabBarController?.tabBar.isHidden = true
         
@@ -192,7 +192,7 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
         setNavigationBarTitle()
         
         // Initialize and configure the tap recognizer
-        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemeEditorViewController.handleSingleTap(_:)))
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MemesDetailViewController.handleSingleTap(_:)))
         tapRecognizer?.numberOfTapsRequired = 1
     }
 }

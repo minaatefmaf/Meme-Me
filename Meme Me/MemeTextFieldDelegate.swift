@@ -11,7 +11,7 @@ import UIKit
 class MemeTextFieldDelegate: NSObject, UITextFieldDelegate {
     
     // Set the default text attributes dictionary.
-    let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
+    private let memeTextAttributes = DefaultTextAttributes().memeTextAttributes
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         

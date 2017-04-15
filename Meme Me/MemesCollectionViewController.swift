@@ -11,7 +11,7 @@ import CoreData
 
 class MemesCollectionViewController: CoreDataCollectionViewController {
     
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet private weak var flowLayout: UICollectionViewFlowLayout!
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
         
     }
     
-    @IBAction func addMeme(_ sender: UIBarButtonItem) {
+    @IBAction private func addMeme(_ sender: UIBarButtonItem) {
         // Navigate to the MemeEditor
         navigateToMemeEditorView()
     }
@@ -91,21 +91,21 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
     // MARK: - Helper Methods
     
     // Navigate to the MemeEditor when needed
-    func navigateToMemeEditorView() {
+    private func navigateToMemeEditorView() {
         var controller: MemeEditorViewController
         controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
         self.present(controller, animated: true, completion: nil)
     }
     
-    func switchToMemeCreationIfEmptyResults() {
+    private func switchToMemeCreationIfEmptyResults() {
         // If there are no results for the fetch, navigate to the meme creation scene
         if fetchedResultsController?.sections![0].numberOfObjects == 0 {
             navigateToMemeEditorView()
         }
     }
     
-    func saveRootTabReference(currentTabIndex: Int) {
+    private func saveRootTabReference(currentTabIndex: Int) {
         let defaults = UserDefaults.standard
         defaults.set(currentTabIndex, forKey: "rootTabReference")
     }
@@ -113,7 +113,7 @@ class MemesCollectionViewController: CoreDataCollectionViewController {
    
     // MARK: - UI Configurations
     
-    func configureUI() {
+    private func configureUI() {
         // Show the navigation bar
         navigationController?.navigationBar.isHidden = false
         

@@ -16,8 +16,8 @@ class MemesTableViewController: CoreDataTableViewController {
     private var editTableItemsButton: UIBarButtonItem!
     
     // Set the core data stack variable
-    let delegate = UIApplication.shared.delegate as! AppDelegate
-    var coreDataStack: CoreDataStack!
+    private let delegate = UIApplication.shared.delegate as! AppDelegate
+    private var coreDataStack: CoreDataStack!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,28 +117,28 @@ class MemesTableViewController: CoreDataTableViewController {
     // MARK: - Helper Methods
     
     // Navigate to the MemeEditor when needed
-    func navigateToMemeEditorView() {
+    @objc private func navigateToMemeEditorView() {
         var controller: MemeEditorViewController
         controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
         
         self.present(controller, animated: true, completion: nil)
     }
     
-    func switchToMemeCreationIfEmptyResults() {
+    private func switchToMemeCreationIfEmptyResults() {
         // If there are no results for the fetch, navigate to the meme creation scene
         if fetchedResultsController?.sections![0].numberOfObjects == 0 {
             navigateToMemeEditorView()
         }
     }
     
-    func saveRootTabReference(currentTabIndex: Int) {
+    private func saveRootTabReference(currentTabIndex: Int) {
         let defaults = UserDefaults.standard
         defaults.set(currentTabIndex, forKey: "rootTabReference")
     }
     
     // MARK: - UI Configurations
     
-    func configureUI() {
+    private func configureUI() {
         // Show the navigation bar
         navigationController?.navigationBar.isHidden = false
             
