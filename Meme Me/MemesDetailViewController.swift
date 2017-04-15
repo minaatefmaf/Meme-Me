@@ -12,6 +12,8 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     
     @IBOutlet weak var buttomToolbar: UIToolbar!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var shareBarButton: UIBarButtonItem!
+    @IBOutlet weak var deleteBarButton: UIBarButtonItem!
     
     var meme: Meme!
     
@@ -82,12 +84,26 @@ class MemesDetailViewController: UIViewController, MemeEditorViewControllerDeleg
     @IBAction func deleteButtonIsPressed(_ sender: Any) {
         // Prepare an alert to confirm the meme deletion
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        // Prepare the actions
         let deleteAction = UIAlertAction(title: Alerts.DeleteMeme, style: UIAlertActionStyle.destructive) { [weak weakSelf = self] _ in
             // Delete the meme
             weakSelf?.deleteTheMeme()
         }
+        let cancelAction = UIAlertAction(title: Alerts.Cancel, style: UIAlertActionStyle.cancel) { [weak weakSelf = self] _ in
+            // Make sure the share button is enabled (for the iPad case)
+            weakSelf?.shareBarButton.isEnabled = true
+        }
+
+        // Add the actions
         alert.addAction(deleteAction)
-        alert.addAction(UIAlertAction(title: Alerts.Cancel, style: UIAlertActionStyle.cancel, handler: nil))
+        alert.addAction(cancelAction)
+        
+        // For iPads, telling them where to attach the popover (the action sheet replaceable there)
+        alert.popoverPresentationController?.barButtonItem = deleteBarButton
+        
+        // Make sure the share button is disabled (for the iPad case)
+        shareBarButton.isEnabled = false
         
         // Present the alert
         self.present(alert, animated: true, completion: nil)
