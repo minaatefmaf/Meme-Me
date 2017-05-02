@@ -12,10 +12,11 @@ The app works fine for iPhones and iPads (check the master-universal branch), an
 iPhone 7 screenshots: </br>
 <img src="screenshots/Meme_Me_01.png" width="200"> <img src="screenshots/Meme_Me_02.png" width="355.73">
 
-<img src="screenshots/Meme_Me_03.png" width="355.73"> <img src="screenshots/Meme_Me_04.png" width="355.73">
-<img src="screenshots/Meme_Me_05.png" width="355.73">
+<img src="screenshots/Meme_Me_03.png" width="355.73"> <img src="screenshots/Meme_Me_04.png" width="355.73"> <img src="screenshots/Meme_Me_05.png" width="355.73">
 
 <img src="screenshots/Meme_Me_06.png" width="200"> <img src="screenshots/Meme_Me_07.png" width="200"> <img src="screenshots/Meme_Me_08.png" width="200">
+
+<img src="screenshots/Meme_Me_09.png" width="200"> <img src="screenshots/Meme_Me_10.png" width="200"> <img src="screenshots/Meme_Me_11.png" width="355.73">
 
 iPad Pro (9.7 inch) screenshots (check the  master-universal branch): </br>
 <img src="screenshots/Meme_Me_iPad_02.png" width="300"> 
@@ -23,6 +24,7 @@ iPad Pro (9.7 inch) screenshots (check the  master-universal branch): </br>
 
 ## Additional Screenshots
 <img src="screenshots/Meme_Me_Additional_01.png" width="355.73"> <img src="screenshots/Meme_Me_Additional_02.png" width="355.73"> <img src="screenshots/Meme_Me_Additional_03.png" width="355.73"> <img src="screenshots/Meme_Me_Additional_04.png" width="355.73">
+
 <img src="screenshots/Meme_Me_Additional_05.png" width="200"> <img src="screenshots/Meme_Me_Additional_06.png" width="200"> <img src="screenshots/Meme_Me_Additional_07.png" width="200"> <img src="screenshots/Meme_Me_Additional_08.png" width="200"> 
 
 ## License
