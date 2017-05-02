@@ -24,11 +24,16 @@ iPhone 7 screenshots: </br>
 iPad Pro (9.7 inch) screenshots (check the  master-universal branch): </br>
 <img src="screenshots/Meme_Me_iPad_01.png" width="300"> <img src="screenshots/Meme_Me_iPad_02.png" width="300"> <img src="screenshots/Meme_Me_iPad_03.png" width="430.47"> 
 
-<img src="screenshots/Meme_Me_iPad_04.png" width="300"> <img src="screenshots/Meme_Me_iPad_05.png" width="300"> <img src="screenshots/Meme_Me_iPad_06.png" width="430.47"> 
+<img src="screenshots/Meme_Me_iPad_04.png" width="300">
+<img src="screenshots/Meme_Me_iPad_05.png" width="300">
+<img src="screenshots/Meme_Me_iPad_06.png" width="430.47"> 
 
 <img src="screenshots/Meme_Me_iPad_07.png" width="300"> <img src="screenshots/Meme_Me_iPad_08.png" width="300"> <img src="screenshots/Meme_Me_iPad_09.png" width="300"> <img src="screenshots/Meme_Me_iPad_10.png" width="430.47"> 
 
-<img src="screenshots/Meme_Me_iPad_11.png" width="430.47"> <img src="screenshots/Meme_Me_iPad_12.png" width="430.47"> <img src="screenshots/Meme_Me_iPad_13.png" width="430.47"> <img src="screenshots/Meme_Me_iPad_14.png" width="300"> 
+<img src="screenshots/Meme_Me_iPad_11.png" width="430.47">
+<img src="screenshots/Meme_Me_iPad_12.png" width="430.47">
+<img src="screenshots/Meme_Me_iPad_13.png" width="430.47">
+<img src="screenshots/Meme_Me_iPad_14.png" width="300"> 
 
 ## Additional Screenshots
 <img src="screenshots/Meme_Me_Additional_01.png" width="355.73"> <img src="screenshots/Meme_Me_Additional_02.png" width="355.73"> <img src="screenshots/Meme_Me_Additional_03.png" width="355.73"> <img src="screenshots/Meme_Me_Additional_04.png" width="355.73">
